@@ -39,7 +39,7 @@ export default {
       }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: 'https://wevis.info/favicon.png' },
+      { rel: 'icon', type: 'image/x-icon', href: 'https://wevis.info/wp-content/uploads/2022/01/favicon.png' },
       { rel: 'stylesheet', href: 'https://design-systems.wevis.info/typography.css' },
     ]
   },
@@ -47,9 +47,9 @@ export default {
   // generate: {
   //   dir: 'dist/booksonshelf',
   // },
-  // router: {
-  //   base: '/booksonshelf/',
-  // },
+  router: {
+    base: '/slapp/',
+  },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
