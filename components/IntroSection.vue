@@ -113,6 +113,14 @@ export default {
 .intro {
   h1 {
     font-size: 240px;
+
+     @media #{$mq-lg} {
+      font-size: 200px;
+    }
+
+    @media #{$mq-mini-mobile} {
+      font-size: 80px;
+    }
   }
 
   .head-1 {
@@ -166,6 +174,11 @@ export default {
   bottom: 0;
   transform-origin: top;
   z-index: 2;
+
+  @media #{$mq-mini-mobile} {
+    width: 200px;
+    top: 90%;
+  }
 }
 
 .intro-sub {
@@ -178,6 +191,10 @@ export default {
     color: #fff;
     background: #000;
     margin: auto;
+
+    @media #{$mq-mini-mobile} {
+      padding: 10px;
+    }
   }
 }
 
@@ -203,5 +220,8 @@ export default {
   left: 15%;
   top: 35%;
   z-index: 1;
+  @media #{$mq-mini-mobile} {
+    width: 200px;
+  }
 }
 </style>

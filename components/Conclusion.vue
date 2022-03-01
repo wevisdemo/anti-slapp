@@ -9,18 +9,21 @@
         justify-content-center
         align-items-lg-center
         text-center
+        py-5
       "
     >
-      <div>
+      <div class="w-100 broken-hammer-section">
         <p class="wv-font-kondolar wv-b2">
-          “ยุติธรรมทำลาย” <br /><br />
+          “ยุติธรรมทำลาย” <br class="d-inline" /><br class="d-inline" />
 
           “ความอยุติธรรม” จากการใช้ “กฎหมาย”<br />
-          เป็นเครื่องมือจำกัดสิทธิเสรีภาพของประชาชน<br /><br />
+          เป็นเครื่องมือจำกัดสิทธิเสรีภาพของประชาชน<br class="d-inline" /><br
+            class="d-inline"
+          />
 
           สมควรต้อง “ถูกกำจัด” ไปให้หมดสิ้น
         </p>
-        <img :src="broken_hammer" alt="broken_hammer" />
+        <img :src="broken_hammer" alt="broken_hammer" class="mb-5 mb-sm-0" />
         <p class="wv-font-kondolar wv-b2">
           เพื่อ “ปกป้อง” สิทธิเสรีภาพของคนไทยทุกคน<br />
           ในการพูด แสดงความเห็น<br />
@@ -61,10 +64,33 @@
             ถึง: ประชาชนผู้ทนทุกข์จาก “ยุติธรรมทำลาย”
           </p>
         </div>
-        <img :src="desktop_paper" alt="desktop_paper" width="100%" />
+        <img
+          :src="desktop_paper"
+          alt="desktop_paper"
+          class="d-none d-sm-block"
+          width="100%"
+        />
+        <img
+          :src="mobile_paper"
+          alt="desktop_paper"
+          class="d-block d-sm-none"
+          width="100%"
+        />
+        <textarea
+          id="text-area"
+          class="textarea wv-font-kondolar wv-b2"
+          name="poll-description"
+          value=""
+          maxlength="120"
+          @keyup="textareaLengthCheck"
+          @keydown="textareaLengthCheck"
+        ></textarea>
+        <span class="wv-font-anuphan wv-b4 charactersLeft"
+          >({{ charactersLeft }}/120)</span
+        >
       </div>
 
-      <div class="text-center my-3">
+      <div class="text-center my-3 px-2">
         <WvButtonGroup :center="true">
           <WvButton color="black">
             <svg
@@ -152,9 +178,11 @@ export default {
   },
   data() {
     return {
+      charactersLeft: 120,
       broken_hammer: require("~/assets/images/broken_hammer.svg"),
       pic_footer: require("~/assets/images/pic_footer.png"),
       desktop_paper: require("~/assets/images/desktop_paper.png"),
+      mobile_paper: require("~/assets/images/mobile_paper.png"),
       icon_download: require("~/assets/images/icon_download.svg"),
       logo_wevis: require("~/assets/images/logo_wevis.svg"),
       logo_tlhr: require("~/assets/images/logo_tlhr.svg"),
@@ -172,6 +200,7 @@ export default {
             breakpoint: 600,
             settings: {
               slidesToShow: 1,
+              slidesToScroll: 1,
             },
           },
         ],
@@ -210,14 +239,38 @@ export default {
       ],
     };
   },
+  methods: {
+    textareaLengthCheck() {
+      var textarea = document.getElementById("text-area");
+      var textArea = textarea.value.length;
+      var charactersLeft = 120 - textArea;
+      this.charactersLeft = charactersLeft;
+    },
+  },
 };
 </script>
 
-<style>
+<style lang="scss">
 .slick-prev,
 .slick-next {
   width: 50px;
   height: 50px;
+}
+
+.slick-disabled {
+  display: none;
+}
+
+.slick-prev {
+  @media #{$mq-lg} {
+    left: 0;
+  }
+}
+
+.slick-next {
+  @media #{$mq-lg} {
+    right: 0;
+  }
 }
 
 /* .slick-track {
@@ -264,6 +317,18 @@ export default {
   left: 0;
   top: 25px;
 
+  @media #{$mq-mini-mobile} {
+    top: 15px;
+
+    h2 {
+      font-size: 20px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+  }
+
   hr {
     border-top: 3px solid #000;
     width: 75%;
@@ -273,5 +338,40 @@ export default {
 hr {
   border-top: 3px solid #000;
   width: 75%;
+}
+
+.broken-hammer-section {
+  br {
+    @media #{$mq-mini-mobile} {
+      display: none;
+    }
+  }
+
+  img {
+    @media #{$mq-mini-mobile} {
+      max-width: 100%;
+    }
+  }
+}
+
+.textarea {
+  width: 80%;
+  height: 60%;
+  position: absolute;
+  top: 27%;
+  left: 12%;
+  background: none;
+  border: none;
+}
+
+.textarea:hover {
+  border: none;
+  outline: none;
+}
+
+.charactersLeft {
+  position: absolute;
+  bottom: 5%;
+  left: 10%;
 }
 </style>

@@ -9,8 +9,10 @@
       <template v-for="(item, i) in people_list">
         <vue-aos animation-class="fadeInUp animated" :key="i">
           <b-row v-if="i % 2 == 0" class="people_list">
-            <b-col cols="3"><img :src="item.img" width="100%" alt="" /></b-col>
-            <b-col cols="9">
+            <b-col cols="12" sm="3"
+              ><img :src="item.img" width="100%" alt=""
+            /></b-col>
+            <b-col cols="12" sm="9">
               <span class="wv-h4 wv-font-black">"</span>
               <h1 class="wv-h5">{{ item.quote }}"</h1>
               <div>
@@ -31,7 +33,7 @@
           </b-row>
 
           <b-row v-else class="people_list">
-            <b-col cols="9" class="text-right">
+            <b-col cols="12" sm="9" class="text-right order-1">
               <span class="wv-h4 wv-font-black">"</span>
               <h1 class="wv-h5">{{ item.quote }}"</h1>
               <div>
@@ -47,8 +49,10 @@
                   v-html="item.desc"
                 ></p></div
             ></b-col>
-            <b-col cols="3"><img :src="item.img" width="100%" alt="" /></b-col>
-            <b-col><hr /></b-col>
+            <b-col cols="12" sm="3" class="order-0"
+              ><img :src="item.img" width="100%" alt=""
+            /></b-col>
+            <b-col class="order-2"><hr /></b-col>
           </b-row>
         </vue-aos>
       </template>
@@ -150,7 +154,6 @@ export default {
 };
 </script>
 
-
 <style lang="scss" scoped>
 .people_list {
   max-width: 992px;
@@ -158,6 +161,24 @@ export default {
 
   hr {
     border-top: 2px dashed #3f3f3f;
+  }
+}
+
+.order-0 {
+  @media #{$mq-mini-mobile} {
+    order: 0;
+  }
+}
+
+.order-1 {
+  @media #{$mq-mini-mobile} {
+    order: 1;
+  }
+}
+
+.order-2 {
+  @media #{$mq-mini-mobile} {
+    order: 2;
   }
 }
 </style>

@@ -72,4 +72,8 @@ export default {
   color: #fff;
   margin: 0 20px;
 }
+
+.menu-link:hover {
+  text-decoration: none;
+}
 </style>
