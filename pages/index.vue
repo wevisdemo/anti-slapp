@@ -11,6 +11,8 @@
     <IntroSection />
     <PeopleDataSection />
     <QuoteSection />
+    <NewspaperSection />
+    <CompanyListSection />
     <Conclusion />
     <WvFooter :dark="true" />
   </div>
@@ -47,8 +49,7 @@ export default {
         {
           hid: "og:description",
           property: "og:description",
-          content:
-            "เมื่อกฎหมาย คุกคาม ประชาชน",
+          content: "เมื่อกฎหมาย คุกคาม ประชาชน",
         },
         {
           hid: "twitter:title",
@@ -58,8 +59,7 @@ export default {
         {
           hid: "twitter:description",
           name: "twitter:description",
-          content:
-            "เมื่อกฎหมาย คุกคาม ประชาชน",
+          content: "เมื่อกฎหมาย คุกคาม ประชาชน",
         },
       ],
     };
