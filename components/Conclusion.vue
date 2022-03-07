@@ -40,10 +40,44 @@
       <VueSlickCarousel v-bind="slickOptions" class="company-slide-wrapper">
         <div class="company-slide" v-for="(item, i) in company_list" :key="i">
           <div class="box">
-            <img :src="item.img" alt="" width="50%" class="mx-auto" />
-            <hr />
-            <p class="wv-font-anuphan wv-font-bold m-0">{{ item.name }}</p>
-            <p class="wv-font-anuphan">{{ item.desc }}</p>
+            <div class="h-auto">
+              <img :src="item.img" alt="" width="50%" class="mx-auto" />
+              <hr />
+              <p class="wv-font-anuphan wv-font-bold m-0">{{ item.name }}</p>
+              <p class="wv-font-anuphan">{{ item.desc }}</p>
+            </div>
+
+            <b-row
+              class="d-flex wv-font-anuphan h-auto"
+              v-if="item.hasQrcode"
+              no-gutters
+            >
+              <b-col cols="5">
+                <img :src="item.img_qrcode" alt="" width="75%" />
+              </b-col>
+              <b-col cols="7" class="">
+                <div v-if="item.id == 5">
+                  <p class="font-weight-bold mb-1">
+                    ชลิตา บัณฑุวงศ์ และ ไอดา อรุณวงศ์ฯ
+                  </p>
+                  <p class="m-0">086-2-70434-7</p>
+                  <p class="m-0">ธนาคารกสิกรไทย</p>
+                  <p class="m-0">สาขาศาลยุติธรรม</p>
+                </div>
+                <div v-if="item.id == 6">
+                  <p class="font-weight-bold">อัจฉรา และ มุทิตา</p>
+                  <p class="m-0">093-8-92403-1</p>
+                  <p class="m-0">ธนาคารกสิกรไทย</p>
+                </div>
+              </b-col>
+            </b-row>
+          </div>
+          <div class="d-flex justify-content-center h-auto link-web">
+            <div v-for="(item2, j) in item.web" :key="j" class="mx-1">
+              <a :href="item2.link" target="_blank" rel="noopener noreferrer"
+                ><img :src="item2.logo" alt=""
+              /></a>
+            </div>
           </div>
         </div>
         <template #prevArrow="arrowOption">
@@ -54,7 +88,7 @@
         </template>
       </VueSlickCarousel>
 
-      <div class="paper-box my-5 position-relative">
+      <div class="paper-box my-5 position-relative" id="paper">
         <div class="text-wrapper">
           <h2 class="wv-font-kondolar wv-font-black text-center wv-h5">
             กำลังใจสู่ผู้ถูก “ยุติธรรมทำลาย”
@@ -80,19 +114,51 @@
           id="text-area"
           class="textarea wv-font-kondolar wv-b2"
           name="poll-description"
-          value=""
+          v-model="encourage_text"
           maxlength="120"
           @keyup="textareaLengthCheck"
           @keydown="textareaLengthCheck"
         ></textarea>
-        <span class="wv-font-anuphan wv-b4 charactersLeft"
+        <span class="wv-font-anuphan wv-b4 charactersLeft" v-if="isShow"
           >({{ charactersLeft }}/120)</span
         >
       </div>
 
       <div class="text-center my-3 px-2">
         <WvButtonGroup :center="true">
-          <WvButton color="black">
+          <WvButton color="black" :onClick="downloadImageAndSendMsg">
+            <svg
+              width="21"
+              height="23"
+              viewBox="0 0 21 23"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6.9707 11H1V22H20V11C20 11 15.3963 11 14.0293 11"
+                stroke="black"
+                stroke-width="2"
+                stroke-miterlimit="10"
+              />
+              <path
+                d="M5.42578 7.30322L10.7291 1.99992L16.0324 7.30322"
+                stroke="black"
+                stroke-width="2"
+                stroke-miterlimit="10"
+              />
+              <line
+                x1="10.791"
+                y1="15.4585"
+                x2="10.791"
+                y2="2.9585"
+                stroke="black"
+                stroke-width="2"
+              />
+            </svg>
+
+            <span>ส่งข้อความ</span>
+          </WvButton>
+          <WvButton color="black" :onClick="downloadImage">
             <svg
               width="21"
               height="21"
@@ -169,16 +235,33 @@
 import WvButtonGroup from "@wevisdemo/ui/components/button-group.vue";
 import WvButton from "@wevisdemo/ui/components/button.vue";
 import WvSharer from "@wevisdemo/ui/components/sharer.vue";
+import html2canvas from "html2canvas";
+import { uuid } from "vue-uuid";
+
+const encourage_slapp =
+  "https://spreadsheet.punchup.world/nc/slapp_am8d/api/v1/encourage-slapp";
+
+let config = {
+  headers: {
+    "xc-auth":
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBpbXBhdGlwYW5AcHVuY2h1cC53b3JsZCIsImZpcnN0bmFtZSI6bnVsbCwibGFzdG5hbWUiOm51bGwsImlkIjoyLCJyb2xlcyI6InVzZXIiLCJpYXQiOjE2NDQ0NzI1ODl9.jwq4PH2VA3mjhfXR0hzaJRz4h7x02s4ZOcEZB9UGMh8",
+    "Content-Type": "application/json",
+  },
+};
 
 export default {
   components: {
     WvButton,
     WvButtonGroup,
     WvSharer,
+    html2canvas,
   },
   data() {
     return {
+      uuid: uuid.v1(),
       charactersLeft: 120,
+      isShow: true,
+      encourage_text: "",
       broken_hammer: require("~/assets/images/broken_hammer.svg"),
       pic_footer: require("~/assets/images/pic_footer.png"),
       desktop_paper: require("~/assets/images/desktop_paper.png"),
@@ -207,34 +290,120 @@ export default {
       },
       company_list: [
         {
+          id: 1,
           name: "ศูนย์ทนายความเพื่อสิทธิมนุษยชน (TLHR)",
           img: require("~/assets/images/label_company/logo_tlhr.png"),
           desc: "การรวมตัวของกลุ่มทนายความ นักกฎหมาย สิทธิมนุษยชน หลังการรัฐประหารของ คสช. มีวัตถุประสงค์เพื่อบันทึกข้อมูลการละเมิด สิทธิมนุษยชนในประเทศไทยภายหลังการ รัฐประหาร ดำเนินการให้ความช่วยเหลือ ทางกฎหมายแก่ผู้ได้รับผลกระทบ",
+          hasQrcode: false,
+          img_qrcode: "",
+          web: [
+            {
+              link: "https://www.facebook.com/lawyercenter2014",
+              logo: require("~/assets/images/logo_fb.svg"),
+            },
+            {
+              link: "https://twitter.com/TLHR2014?s=20",
+              logo: require("~/assets/images/logo_twitter.svg"),
+            },
+            {
+              link: "https://tlhr2014.com/ ",
+              logo: require("~/assets/images/logo_web.svg"),
+            },
+          ],
         },
         {
+          id: 2,
           name: "สมาคมนักกฎหมายสิทธิมนุษยชน (สนส.)",
           img: require("~/assets/images/label_company/logo_hrla.png"),
           desc: "การรวมตัวกันของกลุ่มนักกฎหมาย ทนายความและคนทำงานด้านสิทธิมนุษยชน ที่มีความมุ่งมั่นในการปฏิบัติงาน เพื่อส่งเสริม หลักนิติธรรม ความเป็นธรรมในสังคม และ คุ้มครองสิทธิมนุษยชน ทั้งในทางวิชาการ และการใช้มาตรฐานทางกฎหมาย",
+          hasQrcode: false,
+          img_qrcode: "",
+          web: [
+            {
+              link: "https://www.facebook.com/naksit.org/",
+              logo: require("~/assets/images/logo_fb.svg"),
+            },
+            {
+              link: "https://naksit.net/",
+              logo: require("~/assets/images/logo_web.svg"),
+            },
+          ],
         },
         {
+          id: 3,
           name: "โครงการอินเทอร์เน็ตเพื่อกฎหมาย ประชาชน (iLaw)",
           img: require("~/assets/images/label_company/logo_ilaw.png"),
           desc: "องค์กรซึ่งทำงานกับภาคประชาสังคมและ คนทั่วไปในสังคมมีเป้าหมายเพื่อไปให้ถึง หลักการประชาธิปไตยเสรีภาพในการ แสดงออกและระบบยุติธรรมที่เป็นธรรม และตรวจสอบได้กว่าที่เป็นอยู่ในปัจจุบัน",
+          hasQrcode: false,
+          img_qrcode: "",
+          web: [
+            {
+              link: "https://www.facebook.com/iLawClub",
+              logo: require("~/assets/images/logo_fb.svg"),
+            },
+            {
+              link: "https://twitter.com/iLawFX?s=20",
+              logo: require("~/assets/images/logo_twitter.svg"),
+            },
+            {
+              link: "https://twitter.com/iLawclub?s=20",
+              logo: require("~/assets/images/logo_twitter.svg"),
+            },
+            {
+              link: "https://www.ilaw.or.th/",
+              logo: require("~/assets/images/logo_web.svg"),
+            },
+          ],
         },
         {
+          id: 4,
           name: "ภาคีนักกฎหมายสิทธิมนุษยชน",
           img: require("~/assets/images/label_company/logo_legal_associate.png"),
           desc: "การรวมตัวของกลุ่มนักกฎหมายและ ทนายความ ที่ช่วยเหลือประชาชนให้เข้าถึง ความยุติธรรมตามนิติรัฐ นิติธรรมอย่างที่ควร จะเป็น เพื่อให้รัฐหยุดการคุกคามประชาชน ในนามของกฎหมาย",
+          hasQrcode: false,
+          img_qrcode: "",
+          web: [
+            {
+              link: "https://www.facebook.com/HRLawyersAlliance/",
+              logo: require("~/assets/images/logo_fb.svg"),
+            },
+            {
+              link: "https://twitter.com/HRLawyersTH?s=20",
+              logo: require("~/assets/images/logo_twitter.svg"),
+            },
+          ],
         },
         {
+          id: 5,
           name: "กองทุนราษฎรประสงค์",
           img: require("~/assets/images/label_company/fund.png"),
           desc: "กองทุนเพื่อเงินวางประกันตัวและเงินค่าปรับ ในคดีที่เกี่ยวเนื่องกับการใช้สิทธิเสรีภาพ ในการแสดงออกทางการเมือง",
+          hasQrcode: true,
+          img_qrcode: require("~/assets/images/willofthepeoplefund-qr.jpg"),
+          web: [
+            {
+              link: "https://www.facebook.com/willofthepeoplefund/",
+              logo: require("~/assets/images/logo_fb.svg"),
+            },
+          ],
         },
         {
+          id: 6,
           name: "กองทุนดาตอร์ปิโด",
           img: require("~/assets/images/label_company/fund_2.png"),
           desc: "กองทุนเพื่อเพื่อช่วยเหลือผู้ถูกจับกุม ที่เกี่ยวข้องกับการชุมนุม หรือคดี ทางการเมืองอื่น ๆ",
+          hasQrcode: true,
+          img_qrcode: require("~/assets/images/FOTOofSilence-qr.jpg"),
+          web: [
+            {
+              link: "https://www.facebook.com/FOTOofSilence/",
+              logo: require("~/assets/images/logo_fb.svg"),
+            },
+            {
+              link: "https://twitter.com/FOTOofSilence?s=20",
+              logo: require("~/assets/images/logo_twitter.svg"),
+            },
+          ],
         },
       ],
     };
@@ -245,6 +414,48 @@ export default {
       var textArea = textarea.value.length;
       var charactersLeft = 120 - textArea;
       this.charactersLeft = charactersLeft;
+    },
+    async downloadImageAndSendMsg() {
+      if (this.encourage_text != "") {
+        await this.$axios
+          .$post(
+            encourage_slapp,
+            {
+              text: this.encourage_text,
+              date: this.$moment().format("DD/MM/YYYY HH:mm"),
+            },
+            config
+          )
+          .then((response) => {
+            console.log("send !");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+      this.downloadImage();
+    },
+    downloadImage() {
+      this.isShow = false;
+
+      setTimeout(() => {
+        if (process.client) {
+          html2canvas(document.querySelector("#paper")).then((canvas) => {
+            var a = document.createElement("a");
+            // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+            a.href = canvas
+              .toDataURL("image/jpeg")
+              .replace("image/jpeg", "image/octet-stream");
+            a.download =
+              this.uuid + "_" + this.$moment().format("DDMMYYYY") + ".jpg";
+            a.click();
+          });
+        }
+      }, 1000);
+
+      setTimeout(() => {
+        this.isShow = true;
+      }, 2000);
     },
   },
 };
@@ -273,27 +484,41 @@ export default {
   }
 }
 
-/* .slick-track {
-    display: table !important;
+.company-slide-wrapper .slick-track {
+  display: flex !important;
 }
 
-.slick-slide {
-  height: auto;
+.company-slide-wrapper .slick-slide {
+  height: inherit !important;
+}
+
+.company-slide-wrapper .slick-slide div {
+  height: 100%;
 }
 
 .slide {
   display: table-cell !important;
   float: none !important;
-} */
+}
 </style>
 
 <style lang="scss" scoped>
+.link-web {
+  position: relative;
+  bottom: 25px;
+}
+
 .company-slide {
+  height: 100%;
   .box {
     border: 1px solid #000000;
     padding: 20px;
     border-radius: 15px;
     margin: 0 10px;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     hr {
       border-top: 1px solid #000;
