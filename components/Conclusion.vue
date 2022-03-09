@@ -47,7 +47,7 @@
               <p class="wv-font-anuphan">{{ item.desc }}</p>
             </div>
 
-            <b-row
+            <!-- <b-row
               class="d-flex wv-font-anuphan h-auto"
               v-if="item.hasQrcode"
               no-gutters
@@ -70,7 +70,7 @@
                   <p class="m-0">ธนาคารกสิกรไทย</p>
                 </div>
               </b-col>
-            </b-row>
+            </b-row> -->
           </div>
           <div class="d-flex justify-content-center h-auto link-web">
             <div v-for="(item2, j) in item.web" :key="j" class="mx-1">
@@ -473,13 +473,13 @@ export default {
 }
 
 .slick-prev {
-  @media #{$mq-lg} {
+  @media #{$mq-tablet} {
     left: 0;
   }
 }
 
 .slick-next {
-  @media #{$mq-lg} {
+  @media #{$mq-tablet} {
     right: 0;
   }
 }
@@ -506,6 +506,12 @@ export default {
 .link-web {
   position: relative;
   bottom: 25px;
+  z-index: 20;
+
+  img {
+    background: white;
+    border-radius: 50%;
+  }
 }
 
 .company-slide {
@@ -519,6 +525,8 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
+    z-index: 10;
 
     hr {
       border-top: 1px solid #000;

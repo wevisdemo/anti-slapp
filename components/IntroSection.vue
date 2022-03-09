@@ -23,7 +23,7 @@
           ><span class="sub-3">ย</span>
         </h1>
         <h2
-          class="text-white wv-font-black mb-5 wv-h6"
+          class="text-white wv-font-black mb-5 wv-h6 head-3"
           :class="[{ fade: isFade }]"
         >
           เมื่อกฎหมาย คุกคาม ประชาชน
@@ -38,21 +38,23 @@
           <img :src="arrow_circle" alt="arrow_circle" />
         </div>
       </div>
-      <div class="py-5 position-relative text-white">
+      <div class="position-relative text-white">
         <div class="intro-sub">
-          <div class="box wv-h8 mb-5">
-            เมื่อระบบยุติธรรม<br />ที่ควรใช้คุ้มครองสิทธิเสรีภาพประชาชน<br />
-            แปรเปลี่ยนเป็นสภาพตรงข้าม<br />
-            <span class="wv-font-black">นั่นคือ “ยุติธรรมทำลาย”</span>
-          </div>
+          <div class="text">
+            <div class="box wv-h8 mb-5">
+              เมื่อระบบยุติธรรม<br />ที่ควรใช้คุ้มครองสิทธิเสรีภาพประชาชน<br />
+              แปรเปลี่ยนเป็นสภาพตรงข้าม<br />
+              <span class="wv-font-black">นั่นคือ “ยุติธรรมทำลาย”</span>
+            </div>
 
-          <div class="box wv-h8 mb-5">
-            ระบบซึ่ง “กฎหมาย”<br />
-            คุกคาม “ประชาชน”
-          </div>
-          <div class="box wv-h8 mb-5">
-            ยุติธรรมทำลาย” ทำร้ายคนไทยอย่างไร ?<br />
-            หาคำตอบและส่งเสียงเพื่อพวกเขาได้ที่นี่
+            <div class="box wv-h8 mb-5">
+              ระบบซึ่ง “กฎหมาย”<br />
+              คุกคาม “ประชาชน”
+            </div>
+            <div class="box wv-h8 mb-5">
+              ยุติธรรมทำลาย” ทำร้ายคนไทยอย่างไร ?<br />
+              หาคำตอบและส่งเสียงเพื่อพวกเขาได้ที่นี่
+            </div>
           </div>
           <div class="text-center">
             <h2 class="wv-h2 wv-font-black">“พวกเขา ผิดอะไร ?”</h2>
@@ -114,7 +116,7 @@ export default {
   h1 {
     font-size: 240px;
 
-     @media #{$mq-lg} {
+    @media #{$mq-tablet} {
       font-size: 200px;
     }
 
@@ -159,6 +161,11 @@ export default {
       left: 10%;
     }
   }
+
+  .head-3 {
+    position: relative;
+    z-index: 30;
+  }
 }
 
 .hammer {
@@ -168,7 +175,7 @@ export default {
   transition: 1s;
   width: 400px;
   left: 0;
-  top: 100%;
+  top: 1100px;
   right: 25%;
   margin: auto;
   bottom: 0;
@@ -176,8 +183,8 @@ export default {
   z-index: 2;
 
   @media #{$mq-mini-mobile} {
-    width: 200px;
-    top: 90%;
+    width: 175px;
+    top: 420px;
   }
 }
 
@@ -195,6 +202,11 @@ export default {
     @media #{$mq-mini-mobile} {
       padding: 10px;
     }
+  }
+  .text {
+    padding-bottom: 25%;
+    // position: relative;
+    // bottom: 225px;
   }
 }
 
@@ -220,8 +232,12 @@ export default {
   left: 15%;
   top: 35%;
   z-index: 1;
+  @media #{$mq-tablet} {
+    top: 40%;
+  }
   @media #{$mq-mini-mobile} {
     width: 200px;
+    top: 38%;
   }
 }
 </style>

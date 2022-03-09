@@ -24,7 +24,15 @@
       </div>
       <div class="main__graphic">
         <div class="h-100vh bg-black py-3">
-          <div class="d-flex justify-content-center flex-wrap people-main-box">
+          <div
+            class="
+              d-flex
+              justify-content-center
+              flex-wrap
+              people-main-box
+              chart-count
+            "
+          >
             <div
               v-for="(item, i) in data_list"
               :key="i"
@@ -36,7 +44,7 @@
               </p>
             </div>
           </div>
-          <b-row class="py-sm-4 py-2 text-white people-main-box h-100">
+          <b-row class="pt-lg-4 pt-2 pb-0 text-white people-main-box chart-box">
             <b-col
               cols="3"
               sm="2"
@@ -117,6 +125,12 @@
                     alt=""
                     :key="'case_8_' + i"
                   />
+                  <img
+                    :src="people_9"
+                    v-for="(item, i) in data_list[8].count"
+                    alt=""
+                    :key="'case_9_' + i"
+                  />
                 </div>
               </div>
             </b-col>
@@ -124,6 +138,7 @@
         </div>
       </div>
       <Scrollama @step-enter="handler" @step-progress="handleProgress">
+        <div class="h-100vh"></div>
         <div
           class="h-100vh step"
           v-for="(item, i) in case_data"
@@ -149,7 +164,7 @@
     </div>
 
     <div
-      class="min-h-screen bg-black py-5 text-white wv-font-kondolar text-center"
+      class="min-h-screen bg-black content-box text-white wv-font-kondolar text-center"
     >
       <h2 class="wv-h5 wv-font-bold mb-3 px-2">
         นี่คือเรื่องราวของคนไทยที่เพียงออกมาใช้สิทธิเสรีภาพ<br />
@@ -286,14 +301,15 @@ export default {
       hammer: require("~/assets/images/hammer.png"),
       arrow_circle: require("~/assets/images/arrow-circle.svg"),
       pic_mob: require("~/assets/images/pic_mob.mp4"),
-      people_1: require("~/assets/images/icon_people/01_people_112.svg"),
-      people_2: require("~/assets/images/icon_people/02_people_116.svg"),
-      people_3: require("~/assets/images/icon_people/03_people_110.svg"),
-      people_4: require("~/assets/images/icon_people/04_people_215.svg"),
+      people_1: require("~/assets/images/icon_people/01_people.svg"),
+      people_2: require("~/assets/images/icon_people/02_people.svg"),
+      people_3: require("~/assets/images/icon_people/03_people.svg"),
+      people_4: require("~/assets/images/icon_people/04_people.svg"),
       people_5: require("~/assets/images/icon_people/05_people.svg"),
       people_6: require("~/assets/images/icon_people/06_people.svg"),
       people_7: require("~/assets/images/icon_people/07_people.svg"),
       people_8: require("~/assets/images/icon_people/08_people.svg"),
+      people_9: require("~/assets/images/icon_people/09_people.svg"),
       data_list: [
         {
           id: 1,
@@ -350,6 +366,13 @@ export default {
           count: 0,
           count_highlight: 0,
           color: "blue-2",
+        },
+        {
+          id: 9,
+          name: "ข้อหาดูหมิ่นศาล<br>(มาตรา 30 - 33)",
+          count: 0,
+          count_highlight: 0,
+          color: "red",
         },
       ],
       case_data: [
@@ -438,62 +461,75 @@ export default {
   },
   methods: {
     handler({ element, index, direction }) {
-      this.index = index;
-      this.total = 0;
-      var data = this.cases.filter((x) => x.id == index + 1);
-      this.month = data[0].month;
-      this.data_list.forEach((element, i) => {
-        element.count = data[0].count[0]["case_" + (i + 1)];
-
-        this.total += element.count;
-      });
-
-      if (index == 0) {
-        this.blink_case_1 = 0;
-        this.blink_case_5 = this.data_list[4].count;
-        this.blink_case_7 = this.data_list[6].count;
-      } else if (index == 1) {
-        this.blink_case_1 = 55;
-        this.blink_case_5 = this.data_list[4].count;
-        this.blink_case_7 = this.data_list[6].count;
-      } else if (index == 2) {
-        this.blink_case_1 = this.data_list[0].count;
-        this.blink_case_5 = 301;
-        this.blink_case_7 = this.data_list[6].count;
-      } else if (index == 3) {
-        this.blink_case_1 = this.data_list[0].count;
-        this.blink_case_5 = this.data_list[4].count;
-        this.blink_case_7 = this.data_list[6].count;
-      } else if (index == 4) {
-        this.blink_case_1 = this.data_list[0].count;
-        this.blink_case_5 = this.data_list[4].count;
-        this.blink_case_7 = 0;
-      } else if (index == 5 || index == 6 || index == 7 || index == 9) {
-        this.blink_case_1 = this.data_list[0].count;
-        this.blink_case_5 = 0;
-        this.blink_case_7 = this.data_list[6].count;
-      } else if (index == 8) {
-        this.blink_case_1 = 124;
-        this.blink_case_5 = this.data_list[4].count;
-        this.blink_case_7 = this.data_list[6].count;
-      } else {
-        this.blink_case_1 = this.data_list[0].count;
-        this.blink_case_5 = this.data_list[4].count;
-        this.blink_case_7 = this.data_list[6].count;
-      }
-    },
-    handleProgress({ element, progress, index }) {
-      if (!this.isShowTutotial) {
-        if (progress == 0 && index == 0) {
-          document.getElementsByTagName("body")[0].style.overflow = "hidden";
-          this.isShowTutotial = true;
+      if (direction == "down") {
+        if (index == 0) {
+          if (!this.isShowTutotial) {
+            //document.getElementsByTagName("body")[0].style.overflow = "hidden";
+            this.isShowTutotial = true;
+          }
+        } else {
+          //document.getElementsByTagName("body")[0].style.overflow = "unset";
+          document.getElementById("tutorial").classList.add("hide-tutorial");
         }
       }
 
-      setTimeout(() => {
-        document.getElementsByTagName("body")[0].style.overflow = "unset";
-        document.getElementById("tutorial").classList.add("hide-tutorial");
-      }, 3000);
+      this.index = index;
+      this.total = 0;
+
+      if (index > 0) {
+        var data = this.cases.filter((x) => x.id == index);
+        this.month = data[0].month;
+        this.data_list.forEach((element, i) => {
+          element.count = data[0].count[0]["case_" + (i + 1)];
+          this.total += element.count;
+        });
+
+        if (index == 1) {
+          this.blink_case_1 = 0;
+          this.blink_case_5 = this.data_list[4].count;
+          this.blink_case_7 = this.data_list[6].count;
+        } else if (index == 2) {
+          this.blink_case_1 = 55;
+          this.blink_case_5 = this.data_list[4].count;
+          this.blink_case_7 = this.data_list[6].count;
+        } else if (index == 3) {
+          this.blink_case_1 = this.data_list[0].count;
+          this.blink_case_5 = 301;
+          this.blink_case_7 = this.data_list[6].count;
+        } else if (index == 4) {
+          this.blink_case_1 = this.data_list[0].count;
+          this.blink_case_5 = this.data_list[4].count;
+          this.blink_case_7 = this.data_list[6].count;
+        } else if (index == 5) {
+          this.blink_case_1 = this.data_list[0].count;
+          this.blink_case_5 = this.data_list[4].count;
+          this.blink_case_7 = 0;
+        } else if (index == 6 || index == 7 || index == 8 || index == 10) {
+          this.blink_case_1 = this.data_list[0].count;
+          this.blink_case_5 = 0;
+          this.blink_case_7 = this.data_list[6].count;
+        } else if (index == 9) {
+          this.blink_case_1 = 124;
+          this.blink_case_5 = this.data_list[4].count;
+          this.blink_case_7 = this.data_list[6].count;
+        } else {
+          this.blink_case_1 = this.data_list[0].count;
+          this.blink_case_5 = this.data_list[4].count;
+          this.blink_case_7 = this.data_list[6].count;
+        }
+      }
+    },
+    handleProgress({ element, progress, index }) {
+      // if (!this.isShowTutotial) {
+      //   if (progress == 0 && index == 0) {
+      //     document.getElementsByTagName("body")[0].style.overflow = "hidden";
+      //     this.isShowTutotial = true;
+      //   }
+      // }
+      // setTimeout(() => {
+      //   document.getElementsByTagName("body")[0].style.overflow = "unset";
+      //   document.getElementById("tutorial").classList.add("hide-tutorial");
+      // }, 3000);
     },
   },
 };
@@ -508,12 +544,12 @@ br {
 
 .blink_me {
   background: #fff;
-  animation: blinker 1s linear infinite;
+  animation: blinker 3s linear infinite;
 }
 
 @keyframes blinker {
   50% {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.3);
   }
 }
 
@@ -535,15 +571,21 @@ br {
 }
 
 .data-box {
-  flex: 0 0 12.5%;
+  flex: 0 0 11.1%;
   padding: 0 13px;
   border-right: 1px solid #444444;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 
+  @media #{$mq-tablet} {
+    .name {
+      font-size: 12px;
+    }
+  }
+
   @media #{$mq-lg} {
-    flex: 0 0 25%;
+    flex: 0 0 33.33%;
     margin-bottom: 10px;
   }
 
@@ -624,7 +666,7 @@ br {
 .people-wrapper {
   margin-top: 60px;
 
-  @media #{$mq-mini-mobile} {
+  @media #{$mq-lg} {
     margin-top: 0;
 
     h3 {
@@ -634,11 +676,20 @@ br {
 }
 
 .people img {
-  //margin-right: 2px;
+  width: 15px;
+  padding: 1px;
+
+  @media #{$mq-tablet} {
+    width: 10.5px;
+  }
 
   @media #{$mq-mini-mobile} {
     margin-right: 0;
-    width: 4.5px;
+    width: 6px;
+  }
+
+  @media #{$mq-se} {
+    width: 5px;
   }
 }
 
@@ -648,6 +699,14 @@ br {
 }
 
 .timeline-date-box {
+  @media #{$mq-lg} {
+    padding: 0 5px;
+
+    h3 {
+      font-size: 21px;
+    }
+  }
+
   @media #{$mq-mini-mobile} {
     padding: 0;
 
@@ -705,7 +764,7 @@ br {
   }
 
   .timeline-desc {
-    max-width: 50%;
+    //max-width: 50%;
     padding: 7px 14px;
     color: #000;
     background: #fff;
@@ -725,7 +784,11 @@ br {
   width: 100%;
   z-index: 999;
   background: rgba(0, 0, 0, 0.7);
-  padding-top: 12vh;
+  padding-top: 120px;
+
+  @media #{$mq-lg} {
+     padding-top: 200px;
+  }
 
   @media #{$mq-mini-mobile} {
     padding-top: 23vh;
@@ -746,7 +809,7 @@ br {
 
   .tutorial-subdesc {
     border: 2px dashed #ffffff;
-    height: 80px;
+    height: 150px;
     animation: blinkline 1s linear infinite;
     padding: 13px 25px;
     max-width: 1200px;
@@ -754,6 +817,7 @@ br {
       padding: 14px 5px;
       border: 1px dashed #ffffff;
       font-size: 13px;
+      height: 100px;
     }
   }
 }
@@ -771,5 +835,41 @@ br {
 .tutorial-box {
   max-width: 1400px;
   margin: auto;
+}
+
+.chart-count {
+  //height: calc(100% - 50px);
+
+  @media #{$mq-mini-mobile} {
+    height: 25vh;
+  }
+
+  @media #{$mq-se} {
+    height: 30vh;
+  }
+}
+
+.chart-box {
+  height: calc(100% - 60px);
+
+  @media #{$mq-tablet} {
+    //height: calc(100% - 100px);
+  }
+
+  @media #{$mq-lg} {
+    height: calc(100% - 200px);
+  }
+
+  @media #{$mq-mini-mobile} {
+    height: 75vh;
+  }
+
+  @media #{$mq-se} {
+    height: 70vh;
+  }
+}
+
+.content-box {
+  padding: 75px 0;
 }
 </style>

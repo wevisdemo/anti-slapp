@@ -1,15 +1,12 @@
 <template>
   <div>
     <template v-for="(item, i) in people_list">
-      <b-row class="company-list mb-5" :key="i" no-gutters>
+      <b-row class="company-list mb-5 px-3" :key="i" no-gutters>
         <b-col
           cols="12"
           sm="6"
-          class="
-            d-flex
-            align-items-center
-            justify-content-center justify-content-sm-end
-          "
+          class="d-flex justify-content-center justify-content-sm-end"
+          :class="{ 'align-items-center': i != 8 }"
         >
           <div class="img-box">
             <img
@@ -39,8 +36,8 @@
               v-html="item.name"
               v-if="item.name != ''"
             ></h1>
-            <div class="d-flex align-items-center">
-              <div class="line"></div>
+            <div class="d-flex" :class="{ 'align-items-center': i != 8 }">
+              <div class="line" :class="{ 'mt-5': i == 8 }"></div>
               <div class="company-data p-3 bg-black text-white">
                 <h1
                   class="wv-b5 wv-font-anuphan text-uppercase"

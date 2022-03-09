@@ -3,7 +3,8 @@
     <div
       class="
         bg-black
-        h-100vh h-auto-mobile
+        min-h-screen
+        h-auto-mobile
         py-5
         d-flex
         flex-column
@@ -42,7 +43,7 @@
             </div>
             <img
               :src="newspaper_1"
-              class="newspaper_1 mt-5"
+              class="newspaper_1 mt-5 newspaper"
               alt=""
               width="100%"
               @click="showNewspaperText(0)"
@@ -61,7 +62,7 @@
             </div>
             <img
               :src="newspaper_2"
-              class="newspaper_2 mt-5"
+              class="newspaper_2 mt-5 newspaper"
               alt=""
               width="100%"
               @click="showNewspaperText(1)"
@@ -80,7 +81,7 @@
             </div>
             <img
               :src="newspaper_3"
-              class="newspaper_3 mt-5"
+              class="newspaper_3 mt-5 newspaper"
               alt=""
               width="100%"
               @click="showNewspaperText(2)"
@@ -99,7 +100,7 @@
             </div>
             <img
               :src="newspaper_4"
-              class="newspaper_4 mt-5"
+              class="newspaper_4 mt-5 newspaper"
               alt=""
               width="100%"
               @click="showNewspaperText(3)"
@@ -118,7 +119,7 @@
         </p>
       </div>
     </div>
-    <div class="bg-black h-100vh py-5 overflow-hidden circle-scale">
+    <div class="bg-black h-100vh overflow-hidden circle-scale">
       <div class="position-relative mb-5">
         <div class="circle" :class="{ scaled: isFade }"></div>
         <h2
@@ -156,7 +157,6 @@
     <b-modal
       id="newspaper-modal"
       ref="newspaper-modal"
-      hide-backdrop
       hide-footer
       hide-header
       no-fade
@@ -397,15 +397,16 @@ export default {
   border-radius: 50%;
 
   @media #{$mq-mini-mobile} {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
+    margin: 40vh auto;
     filter: blur(15px);
     transform: scale(2);
   }
 }
 
 .scaled {
-  transform: scale(5);
+  transform: scale(10);
   filter: unset;
 }
 
@@ -415,12 +416,18 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  width: 75vh;
-  height: 75vh;
+  width: 50vh;
+  height: 50vh;
   margin: auto;
   display: flex;
   justify-content: center;
   align-items: center;
+
+    // @media #{$mq-tablet} {
+  //   width: 75vh;
+  //   height: 75vh;
+  //   margin: 15vh auto;
+  // }
 
   @media #{$mq-mini-mobile} {
     width: 300px;
@@ -450,5 +457,9 @@ img {
   @media #{$mq-mini-mobile} {
     max-width: 95%;
   }
+}
+
+.newspaper:hover {
+  opacity: 0.5;
 }
 </style>
