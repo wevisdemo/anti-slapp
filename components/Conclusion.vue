@@ -33,8 +33,8 @@
     </div>
     <div class="bg-white text-black pt-5">
       <h2 class="wv-font-kondolar wv-font-black text-center wv-h5 mb-5">
-        ขอชวนร่วมเป็นส่วนหนึ่ง<br />
-        เพื่อแสดงจุดยืนต่อต้าน “ยุติธรรมทำลาย”
+        ติดตามและสนับสนุนคนทำงาน<br />
+        เพื่อต่อต้าน “ยุติธรรมทำลาย”
       </h2>
 
       <VueSlickCarousel v-bind="slickOptions" class="company-slide-wrapper">
@@ -47,15 +47,15 @@
               <p class="wv-font-anuphan">{{ item.desc }}</p>
             </div>
 
-            <!-- <b-row
+            <b-row
               class="d-flex wv-font-anuphan h-auto"
               v-if="item.hasQrcode"
               no-gutters
             >
-              <b-col cols="5">
+              <!-- <b-col cols="5">
                 <img :src="item.img_qrcode" alt="" width="75%" />
-              </b-col>
-              <b-col cols="7" class="">
+              </b-col> -->
+              <b-col cols="12" class="">
                 <div v-if="item.id == 5">
                   <p class="font-weight-bold mb-1">
                     ชลิตา บัณฑุวงศ์ และ ไอดา อรุณวงศ์ฯ
@@ -70,7 +70,7 @@
                   <p class="m-0">ธนาคารกสิกรไทย</p>
                 </div>
               </b-col>
-            </b-row> -->
+            </b-row>
           </div>
           <div class="d-flex justify-content-center h-auto link-web">
             <div v-for="(item2, j) in item.web" :key="j" class="mx-1">
@@ -88,7 +88,7 @@
         </template>
       </VueSlickCarousel>
 
-      <div class="paper-box my-5 position-relative" id="paper">
+      <div class="paper-box my-5 position-relative px-1" id="paper">
         <div class="text-wrapper">
           <h2 class="wv-font-kondolar wv-font-black text-center wv-h5">
             กำลังใจสู่ผู้ถูก “ยุติธรรมทำลาย”
@@ -99,17 +99,17 @@
           </p>
         </div>
         <img
-          :src="desktop_paper"
+          :src="notecolor == 'pink' ? paper_pink : paper_white"
           alt="desktop_paper"
-          class="d-none d-sm-block"
           width="100%"
         />
-        <img
+        <!-- <img
           :src="mobile_paper"
           alt="desktop_paper"
           class="d-block d-sm-none"
           width="100%"
-        />
+        /> -->
+
         <textarea
           id="text-area"
           class="textarea wv-font-kondolar wv-b2"
@@ -122,6 +122,12 @@
         <span class="wv-font-anuphan wv-b4 charactersLeft" v-if="isShow"
           >({{ charactersLeft }}/120)</span
         >
+      </div>
+
+      <div class="d-flex justify-content-center mb-5 align-items-center">
+        <span class="wv-font-kondolar text-center wv-b2 m-0">เลือกสี :</span>
+        <div class="pinknote note mx-1" @click="test('pink')"></div>
+        <div class="whitenote note mx-1" @click="test('white')"></div>
       </div>
 
       <div class="text-center my-3 px-2">
@@ -228,6 +234,49 @@
 
       <img :src="pic_footer" alt="pic_footer" width="100%" />
     </div>
+
+    <b-modal
+      id="note-modal"
+      ref="note-modal"
+      hide-footer
+      hide-header
+      hide-backdrop
+      centered
+    >
+      <div class="p-4 bg-white text-center">
+        <template v-if="notetype == 1">
+          <img :src="icon_correct" width="70" alt="" />
+          <p class="wv-font-kondolar text-center wv-b2 m-0 wv-font-black">
+            ส่งข้อความเรียบร้อย
+          </p>
+          <p class="wv-font-anuphan text-center wv-b3 m-0">
+            ขอบคุณทุกกำลังใจ<br />
+            ที่มีต่อประชาชนผู้ถูก<br />"ยุติธรรมทำลาย"
+          </p>
+        </template>
+        <template v-else-if="notetype == 2">
+          <img :src="icon_correct" width="70" alt="" />
+          <p class="wv-font-kondolar text-center wv-b2 m-0 wv-font-black">
+            ดาวน์โหลดเรียบร้อย
+          </p>
+          <p class="wv-font-anuphan text-center wv-b3 m-0">
+            อย่าลืมแชร์ลงโซเซียลของคุณ<br />
+            เพื่อให้กำลังใจกับเหล่าประชาชน<br />
+            ที่โดน “ยุติธรรมทำลาย”
+          </p></template
+        >
+        <template v-else-if="notetype == 3">
+          <img :src="icon_failed" width="70" alt="" />
+          <p class="wv-font-kondolar text-center wv-b2 m-0 wv-font-black">
+            ไม่สำเร็จ!
+          </p>
+          <p class="wv-font-anuphan text-center wv-b3 m-0">
+            โปรดกรอกข้อความ<br />
+            ก่อนกดปุ่มดาวน์โหลด หรือส่งข้อความ
+          </p></template
+        >
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -261,12 +310,18 @@ export default {
       uuid: uuid.v1(),
       charactersLeft: 120,
       isShow: true,
+      notecolor: "pink",
+      notetype: 0,
       encourage_text: "",
       broken_hammer: require("~/assets/images/broken_hammer.svg"),
       pic_footer: require("~/assets/images/pic_footer.png"),
+      paper_pink: require("~/assets/images/paper_pink.png"),
+      paper_white: require("~/assets/images/paper_white.png"),
       desktop_paper: require("~/assets/images/desktop_paper.png"),
       mobile_paper: require("~/assets/images/mobile_paper.png"),
       icon_download: require("~/assets/images/icon_download.svg"),
+      icon_correct: require("~/assets/images/icon_correct.svg"),
+      icon_failed: require("~/assets/images/icon_failed.svg"),
       logo_wevis: require("~/assets/images/logo_wevis.svg"),
       logo_tlhr: require("~/assets/images/logo_tlhr.svg"),
       button_left_default: require("~/assets/images/button/button_left_default.svg"),
@@ -409,6 +464,9 @@ export default {
     };
   },
   methods: {
+    test(color) {
+      this.notecolor = color;
+    },
     textareaLengthCheck() {
       var textarea = document.getElementById("text-area");
       var textArea = textarea.value.length;
@@ -417,6 +475,10 @@ export default {
     },
     async downloadImageAndSendMsg() {
       if (this.encourage_text != "") {
+        this.notetype = 1;
+        if (process.client)
+          document.getElementById("text-area").classList.add("italic_notetext");
+
         await this.$axios
           .$post(
             encourage_slapp,
@@ -428,16 +490,33 @@ export default {
           )
           .then((response) => {
             console.log("send !");
+            this.downloadImg();
           })
           .catch((error) => {
             console.log(error);
           });
+
+        this.$refs["note-modal"].show();
+      } else {
+        this.notetype = 3;
+        this.$refs["note-modal"].show();
       }
-      this.downloadImage();
     },
     downloadImage() {
-      this.isShow = false;
+      if (this.encourage_text != "") {
+        if (process.client)
+          document.getElementById("text-area").classList.add("italic_notetext");
+        this.notetype = 2;
+        this.$refs["note-modal"].show();
 
+        this.downloadImg();
+      } else {
+        this.notetype = 3;
+        this.$refs["note-modal"].show();
+      }
+    },
+    downloadImg() {
+      this.isShow = false;
       setTimeout(() => {
         if (process.client) {
           html2canvas(document.querySelector("#paper")).then((canvas) => {
@@ -455,6 +534,11 @@ export default {
 
       setTimeout(() => {
         this.isShow = true;
+        this.$refs["note-modal"].hide();
+        if (process.client)
+          document
+            .getElementById("text-area")
+            .classList.remove("italic_notetext");
       }, 2000);
     },
   },
@@ -464,8 +548,8 @@ export default {
 <style lang="scss">
 .slick-prev,
 .slick-next {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
 }
 
 .slick-disabled {
@@ -473,14 +557,27 @@ export default {
 }
 
 .slick-prev {
-  @media #{$mq-tablet} {
+  @media #{$mq-small-laptop} {
     left: 0;
+    z-index: 1;
   }
 }
 
+.slick-dots li button:before {
+  font-size: 16px;
+  opacity: 1 !important;
+  -webkit-text-stroke: 1px black;
+  color: #fff;
+}
+
+.slick-dots li.slick-active button:before {
+  opacity: 1;
+}
+
 .slick-next {
-  @media #{$mq-tablet} {
+  @media #{$mq-small-laptop} {
     right: 0;
+    z-index: 1;
   }
 }
 
@@ -518,7 +615,7 @@ export default {
   height: 100%;
   .box {
     border: 1px solid #000000;
-    padding: 20px;
+    padding: 20px 30px;
     border-radius: 15px;
     margin: 0 10px;
     height: 95%;
@@ -605,6 +702,26 @@ hr {
 .charactersLeft {
   position: absolute;
   bottom: 5%;
-  left: 10%;
+  left: 50%;
+}
+
+.note {
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #535349;
+  cursor: pointer;
+}
+
+.pinknote {
+  background: #fbb3bf;
+}
+
+.whitenote {
+  background: #f6f6f6;
+}
+
+.italic_notetext {
+  transform: rotate(-3deg);
 }
 </style>

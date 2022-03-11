@@ -116,7 +116,7 @@ export default {
   h1 {
     font-size: 240px;
 
-    @media #{$mq-tablet} {
+    @media #{$mq-small-laptop} {
       font-size: 200px;
     }
 

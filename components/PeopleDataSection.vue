@@ -17,7 +17,11 @@
               <div class="tutorial-subdesc">
                 ส่วนนี้แสดงจำนวนผู้ถูกดำเนินคดีด้วยกฎหมายต่าง ๆ<br />
                 โดยคนหนึ่งคนสามารถถูกดำเนินคดีได้มากกว่า 1 ข้อหา
-              </div></b-col
+              </div>
+              <div class="text-center">
+              <img :src="icon_gonext" alt="">
+              </div>
+              </b-col
             >
           </b-row>
         </div>
@@ -164,7 +168,14 @@
     </div>
 
     <div
-      class="min-h-screen bg-black content-box text-white wv-font-kondolar text-center"
+      class="
+        min-h-screen
+        bg-black
+        content-box
+        text-white
+        wv-font-kondolar
+        text-center
+      "
     >
       <h2 class="wv-h5 wv-font-bold mb-3 px-2">
         นี่คือเรื่องราวของคนไทยที่เพียงออกมาใช้สิทธิเสรีภาพ<br />
@@ -300,6 +311,7 @@ export default {
       blink_case_7: 0,
       hammer: require("~/assets/images/hammer.png"),
       arrow_circle: require("~/assets/images/arrow-circle.svg"),
+      icon_gonext: require("~/assets/images/icon_gonext.gif"),
       pic_mob: require("~/assets/images/pic_mob.mp4"),
       people_1: require("~/assets/images/icon_people/01_people.svg"),
       people_2: require("~/assets/images/icon_people/02_people.svg"),
@@ -469,7 +481,7 @@ export default {
           }
         } else {
           //document.getElementsByTagName("body")[0].style.overflow = "unset";
-          document.getElementById("tutorial").classList.add("hide-tutorial");
+      document.getElementById("tutorial").classList.add("hide-tutorial");
         }
       }
 
@@ -506,7 +518,11 @@ export default {
           this.blink_case_7 = 0;
         } else if (index == 6 || index == 7 || index == 8 || index == 10) {
           this.blink_case_1 = this.data_list[0].count;
-          this.blink_case_5 = 0;
+          this.blink_case_5 = this.data_list[4].count;
+
+          setTimeout(() => {
+            this.blink_case_5 = 0;
+          }, 200);
           this.blink_case_7 = this.data_list[6].count;
         } else if (index == 9) {
           this.blink_case_1 = 124;
@@ -679,7 +695,7 @@ br {
   width: 15px;
   padding: 1px;
 
-  @media #{$mq-tablet} {
+  @media #{$mq-small-laptop} {
     width: 10.5px;
   }
 
@@ -717,14 +733,18 @@ br {
 }
 
 .step {
-  padding: 15vh 5px;
+  padding: 5vh 20px;
   max-width: 1300px;
   margin: auto;
   display: flex;
   //align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   z-index: 20;
   flex-direction: column;
+
+  @media #{$mq-mini-mobile} {
+    padding: 5vh 5px;
+  }
 
   .timeline-header {
     padding: 6px 10px;
@@ -787,7 +807,7 @@ br {
   padding-top: 120px;
 
   @media #{$mq-lg} {
-     padding-top: 200px;
+    padding-top: 200px;
   }
 
   @media #{$mq-mini-mobile} {
