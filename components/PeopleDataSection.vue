@@ -339,7 +339,7 @@ export default {
         },
         {
           id: 3,
-          name: "ข้อหาหมิ่นประมาท กษัตริย์<br>(มาตรา 112)",
+          name: "ข้อหาประทุษร้าย เสรีภาพพระราชินี<br>(มาตรา 110)",
           count: 5,
           count_highlight: 0,
           color: "purple",

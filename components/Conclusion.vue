@@ -225,11 +225,19 @@
         <p class="wv-font-kondolar text-center wv-b2 wv-font-black">
           สร้างสรรค์โดย
         </p>
-        <img :src="logo_wevis" alt="logo_wevis" width="150" />
+        <a href="https://wevis.info/" target="_blank" rel="noopener noreferrer">
+          <img :src="logo_wevis" alt="logo_wevis" width="150"
+        /></a>
         <p class="wv-font-kondolar text-center wv-b2 wv-font-black mt-3">
           สนับสนุนข้อมูลหลักโดย
         </p>
-        <img :src="logo_tlhr" alt="logo_tlhr" width="150" />
+        <a
+          href="https://tlhr2014.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img :src="logo_tlhr" alt="logo_wevis" width="150"
+        /></a>
       </div>
 
       <img :src="pic_footer" alt="pic_footer" width="100%" />

@@ -248,6 +248,16 @@
         </p>
       </WvParagraphGroup>
 
+      <div class="text-center">
+        <a
+          href="https://github.com/wevisdemo"
+          class="view-gh-btn wv-font-kondolar"
+          target="_blank"
+          rel="noopener noreferrer"
+          >View This Project On Github</a
+        >
+      </div>
+
       <WvParagraphGroup heading="อาสาสมัครร่วมพัฒนา">
         <WvParagraphGroup
           :small="true"
@@ -411,5 +421,23 @@ a {
 
 .fb-btn {
   text-decoration: none;
+}
+
+.view-gh-btn {
+  display: inline-block;
+  background: #272727;
+  padding: 1.5rem 7rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  border-radius: 1rem;
+  font-size: 1.4rem;
+  font-weight: normal;
+  color: #fff;
+  margin-bottom: 2rem;
+
+  @media #{$mq-mini-mobile} {
+    padding: 1rem;
+    font-size: 1rem;
+  }
 }
 </style>
