@@ -189,7 +189,7 @@ export default {
 
   @media #{$mq-mini-mobile} {
     max-width: 95%;
-    margin-left: 8px;
+    margin-left: 2.5%;
     margin-top: 30px;
     background: black;
     color: #fff;

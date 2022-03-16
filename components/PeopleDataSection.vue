@@ -19,10 +19,13 @@
                 โดยคนหนึ่งคนสามารถถูกดำเนินคดีได้มากกว่า 1 ข้อหา
               </div>
               <div class="text-center">
-              <img :src="icon_gonext" alt="">
+                <img :src="icon_gonext" alt="" />
+                <div class="wv-b5">
+                  เลื่อนลง<br />
+                  เพื่อดูข้อมูล
+                </div>
               </div>
-              </b-col
-            >
+            </b-col>
           </b-row>
         </div>
       </div>
@@ -141,19 +144,21 @@
           </b-row>
         </div>
       </div>
-      <Scrollama @step-enter="handler" @step-progress="handleProgress">
+      <Scrollama @step-enter="handler" @step-exit="handlerExit">
         <div class="h-100vh"></div>
         <div
           class="h-100vh step"
           v-for="(item, i) in case_data"
           :key="'case_data_' + i"
         >
-          <div
-            class="timeline-desc wv-font-anuphan wv-b5"
-            v-if="item.subdesc != ''"
-          >
-            {{ item.subdesc }}
-          </div>
+          <!-- <div class="d-flex justify-content-center align-items-center px-3"> -->
+            <div
+              class="timeline-desc wv-font-anuphan wv-b5"
+              v-if="item.subdesc != ''"
+            >
+              {{ item.subdesc }}
+            </div>
+          <!-- </div> -->
           <div class="d-flex justify-content-center align-items-center">
             <div class="timeline-header wv-h8 wv-font-black wv-font-kondolar">
               สถานการณ์
@@ -311,7 +316,7 @@ export default {
       blink_case_7: 0,
       hammer: require("~/assets/images/hammer.png"),
       arrow_circle: require("~/assets/images/arrow-circle.svg"),
-      icon_gonext: require("~/assets/images/icon_gonext.gif"),
+      icon_gonext: require("~/assets/images/icon_next.gif"),
       pic_mob: require("~/assets/images/pic_mob.mp4"),
       people_1: require("~/assets/images/icon_people/01_people.svg"),
       people_2: require("~/assets/images/icon_people/02_people.svg"),
@@ -346,28 +351,28 @@ export default {
         },
         {
           id: 4,
-          name: "ข้อหาประทุษร้าย เสรีภาพพระราชินี<br>(มาตรา 110)",
+          name: "ข้อหามั่วสุมกันใช้กำลังประทุษร้ายให้เกิดการวุ่นวาย<br>(มาตรา 215)",
           count: 99,
           count_highlight: 0,
           color: "blue",
         },
         {
           id: 5,
-          name: "ข้อหามั่วสุมกัน ให้เกิดการวุ่นวาย<br>(มาตรา 215)",
+          name: "ข้อหาฝ่าฝืนพ.ร.ก.ฉุกเฉินฯ",
           count: 222,
           count_highlight: 0,
           color: "pink",
         },
         {
           id: 6,
-          name: "ข้อหาฝ่าฝืน พ.ร.ก.ฉุกเฉินฯ",
+          name: "ข้อหาฝ่าฝืนพ.ร.บ.การชุมนุมสาธารณะฯ",
           count: 84,
           count_highlight: 0,
           color: "brown",
         },
         {
           id: 7,
-          name: "ข้อหาฝ่าฝืน พ.ร.บ. คอมพิวเตอร์ฯ",
+          name: "ข้อหาฝ่าฝืนพ.ร.บ.คอมพิวเตอร์ฯ",
           count: 0,
           count_highlight: 0,
           color: "green",
@@ -481,7 +486,8 @@ export default {
           }
         } else {
           //document.getElementsByTagName("body")[0].style.overflow = "unset";
-      document.getElementById("tutorial").classList.add("hide-tutorial");
+          if (this.isShowTutotial)
+            document.getElementById("tutorial").classList.add("hide-tutorial");
         }
       }
 
@@ -533,19 +539,18 @@ export default {
           this.blink_case_5 = this.data_list[4].count;
           this.blink_case_7 = this.data_list[6].count;
         }
+      } else {
+        this.total = 529;
       }
     },
-    handleProgress({ element, progress, index }) {
-      // if (!this.isShowTutotial) {
-      //   if (progress == 0 && index == 0) {
-      //     document.getElementsByTagName("body")[0].style.overflow = "hidden";
-      //     this.isShowTutotial = true;
-      //   }
-      // }
-      // setTimeout(() => {
-      //   document.getElementsByTagName("body")[0].style.overflow = "unset";
-      //   document.getElementById("tutorial").classList.add("hide-tutorial");
-      // }, 3000);
+    handlerExit({ element, direction, index }) {
+      //console.log("step-exit", { element, direction, index });
+      if (direction == "up" && index == 0) {
+        var isShowTutorial = document
+          .getElementById("tutorial")
+          .classList.contains("hide-tutorial");
+        if (!isShowTutorial) this.isShowTutotial = false;
+      }
     },
   },
 };
@@ -734,7 +739,7 @@ br {
 
 .step {
   padding: 5vh 20px;
-  max-width: 1300px;
+  max-width: 1400px;
   margin: auto;
   display: flex;
   //align-items: center;
@@ -750,6 +755,7 @@ br {
     padding: 6px 10px;
     background: #ffffff;
     border-radius: 2px;
+    //flex: 0 0 10%;
     @media #{$mq-mini-mobile} {
       padding: 4px 6px;
       font-size: 14px;
@@ -760,6 +766,7 @@ br {
     border-top: 2px solid #ffffff;
     height: 2px;
     width: 85px;
+    //flex: 0 0 5%;
     @media #{$mq-mini-mobile} {
       border: 1px solid #ffffff;
       height: 1px;
@@ -804,7 +811,7 @@ br {
   width: 100%;
   z-index: 999;
   background: rgba(0, 0, 0, 0.7);
-  padding-top: 120px;
+  padding-top: 140px;
 
   @media #{$mq-lg} {
     padding-top: 200px;

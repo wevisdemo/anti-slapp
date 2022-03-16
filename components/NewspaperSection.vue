@@ -28,6 +28,15 @@
         </p>
       </div>
 
+      <div class="text-center">
+        <div class="my-4">
+          <img :src="timeline_newspaper" alt="timeline_newspaper" />
+        </div>
+        <p class="wv-font-anuphan wv-b3 text-white text-center m-0">
+          ยังคงอยู่เสมอมา
+        </p>
+      </div>
+
       <div class="text-center my-5">
         <b-row class="text-white newspaper-box" no-gutters>
           <b-col cols="12" sm="3">
@@ -108,15 +117,6 @@
           </b-col>
         </b-row>
         <img :src="click" alt="click" />
-      </div>
-
-      <div class="text-center">
-        <div class="my-4">
-          <img :src="timeline_newspaper" alt="timeline_newspaper" />
-        </div>
-        <p class="wv-font-anuphan wv-b3 text-white text-center m-0">
-          ยังคงอยู่เสมอมา
-        </p>
       </div>
     </div>
     <div class="bg-black h-100vh overflow-hidden circle-scale">
@@ -423,7 +423,7 @@ export default {
   justify-content: center;
   align-items: center;
 
-    // @media #{$mq-tablet} {
+  // @media #{$mq-tablet} {
   //   width: 75vh;
   //   height: 75vh;
   //   margin: 15vh auto;

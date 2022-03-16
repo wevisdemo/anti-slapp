@@ -440,4 +440,10 @@ a {
     font-size: 1rem;
   }
 }
+
+.wv_button {
+  @media #{$mq-mini-mobile} {
+    width: 100%;
+  }
+}
 </style>

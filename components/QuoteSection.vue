@@ -11,9 +11,7 @@
           <b-row v-if="i % 2 == 0" class="people_list">
             <b-col cols="12" sm="3"
               ><img :src="item.img" width="100%" alt="" />
-              <p
-                class="text-uppercase gray mb-5 px-2 wv-font-anuphan"
-              >
+              <p class="text-uppercase gray mb-5 px-2 wv-font-anuphan">
                 {{ item.credit }}
               </p></b-col
             >
@@ -23,7 +21,7 @@
               <div>
                 <font-awesome-icon
                   :icon="['fas', 'caret-left']"
-                  class="text-white"
+                  class="text-white caret-left"
                 />
                 <span class="yellow wv-b3 wv-font-black wv-font-anuphan">{{
                   item.name
@@ -47,7 +45,7 @@
                 }}</span>
                 <font-awesome-icon
                   :icon="['fas', 'caret-right']"
-                  class="text-white"
+                  class="text-white caret-right"
                 />
                 <p
                   class="yellow wv-b6 m-0 wv-font-anuphan"
@@ -55,13 +53,14 @@
                 ></p></div
             ></b-col>
             <b-col cols="12" sm="3" class="order-ppl-0"
-              ><img :src="item.img" width="100%" alt=""
-            />  <p
+              ><img :src="item.img" width="100%" alt="" />
+              <p
                 class="text-uppercase text-right gray mb-5 px-2 wv-font-anuphan"
               >
                 {{ item.credit }}
-              </p></b-col>
-            <b-col class="order-ppl-2"><hr v-if="i != 9"/></b-col>
+              </p></b-col
+            >
+            <b-col class="order-ppl-2"><hr v-if="i != 9" /></b-col>
           </b-row>
         </vue-aos>
       </template>
@@ -198,6 +197,18 @@ export default {
 .order-ppl-2 {
   @media #{$mq-mini-mobile} {
     order: 2;
+  }
+}
+
+.caret-left {
+  @media #{$mq-mini-mobile} {
+    transform: rotate(90deg);
+  }
+}
+
+.caret-right {
+  @media #{$mq-mini-mobile} {
+    transform: rotate(-90deg);
   }
 }
 </style>

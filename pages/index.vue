@@ -11,7 +11,7 @@
     <IntroSection />
     <PeopleDataSection />
     <QuoteSection />
-    <NewspaperSection />
+    <NewspaperSection /> 
     <CompanyListSection />
     <Conclusion />
     <WvFooter :dark="true" />
