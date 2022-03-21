@@ -56,16 +56,29 @@
                 <img :src="item.img_qrcode" alt="" width="75%" />
               </b-col> -->
               <b-col cols="12" class="">
+                <div v-if="item.id == 1">
+                  <p class="font-weight-bold mb-1">
+                    มูลนิธิสิทธิเพื่อความยุติธรรม
+                  </p>
+                  <p class="m-0">800-9-54209-4</p>
+                  <p class="m-0">ธนาคารกรุงศรีอยุธยา สาขาบิ๊กซี ลาดพร้าว 2</p>
+                </div>
+                <div v-if="item.id == 4">
+                  <p class="font-weight-bold mb-1">
+                    สมาคมนักกฎหมายสิทธิมนุษยชน
+                  </p>
+                  <p class="m-0">089-3-67744-5</p>
+                  <p class="m-0">ธนาคารกสิกรไทย สาขาถนนรัชดาภิเษก ห้วยขวาง</p>
+                </div>
                 <div v-if="item.id == 5">
                   <p class="font-weight-bold mb-1">
                     ชลิตา บัณฑุวงศ์ และ ไอดา อรุณวงศ์ฯ
                   </p>
                   <p class="m-0">086-2-70434-7</p>
-                  <p class="m-0">ธนาคารกสิกรไทย</p>
-                  <p class="m-0">สาขาศาลยุติธรรม</p>
+                  <p class="m-0">ธนาคารกสิกรไทย สาขาศาลยุติธรรม</p>
                 </div>
                 <div v-if="item.id == 6">
-                  <p class="font-weight-bold">อัจฉรา และ มุทิตา</p>
+                  <p class="font-weight-bold mb-1">อัจฉรา และ มุทิตา</p>
                   <p class="m-0">093-8-92403-1</p>
                   <p class="m-0">ธนาคารกสิกรไทย</p>
                 </div>
@@ -110,15 +123,18 @@
           width="100%"
         /> -->
 
-        <textarea
+        <div
+          contenteditable="true"
           id="text-area"
           class="textarea wv-font-kondolar wv-b2"
           name="poll-description"
-          v-model="encourage_text"
-          maxlength="120"
           @keyup="textareaLengthCheck"
           @keydown="textareaLengthCheck"
-        ></textarea>
+          @paste="textareaLengthCheck"
+          @input="onInput"
+          maxlength="120"
+        ></div>
+
         <span class="wv-font-anuphan wv-b4 charactersLeft" v-if="isShow"
           >({{ charactersLeft }}/120)</span
         >
@@ -210,6 +226,10 @@
           </WvButton>
         </WvButtonGroup>
 
+        <p class="wv-font-kondolar text-center wv-b3 my-5">
+          เมื่อกด “ส่งข้อความ” ข้อความจะถูกส่งไปจัดเก็บไว้กับทางทีมงาน WeVis<br />เพื่อนำไปใช้เป็นส่วนหนึ่งของการให้กำลังใจและเรียกร้องความยุติธรรมแก่ประชาชนผู้ถูกยุติธรรมทำลายทุกคนต่อไป
+        </p>
+
         <h2 class="wv-font-kondolar text-center wv-h5 my-5">
           ร่วมส่งเสียงเพื่อพวกเขา ผ่านการแชร์งานนี้<br />
           พร้อมติดแฮ็ชแท็ค
@@ -219,7 +239,10 @@
           #ยุติธรรมทำลาย
         </h1>
 
-        <WvSharer url="https://wevisdemo.github.io/slapp" center="true" />
+        <WvSharer
+          url="https://wevisdemo.github.io/slapp?hashtag=%23AquiVaElHashtag"
+          center="true"
+        />
 
         <hr class="w-50 my-5" />
         <p class="wv-font-kondolar text-center wv-b2 wv-font-black">
@@ -318,6 +341,7 @@ export default {
       uuid: uuid.v1(),
       charactersLeft: 120,
       isShow: true,
+      canType: true,
       notecolor: "pink",
       notetype: 0,
       encourage_text: "",
@@ -357,7 +381,7 @@ export default {
           name: "ศูนย์ทนายความเพื่อสิทธิมนุษยชน (TLHR)",
           img: require("~/assets/images/label_company/logo_tlhr.png"),
           desc: "การรวมตัวของกลุ่มทนายความ นักกฎหมาย สิทธิมนุษยชน หลังการรัฐประหารของ คสช. มีวัตถุประสงค์เพื่อบันทึกข้อมูลการละเมิด สิทธิมนุษยชนในประเทศไทยภายหลังการ รัฐประหาร ดำเนินการให้ความช่วยเหลือ ทางกฎหมายแก่ผู้ได้รับผลกระทบ",
-          hasQrcode: false,
+          hasQrcode: true,
           img_qrcode: "",
           web: [
             {
@@ -423,7 +447,7 @@ export default {
           name: "ภาคีนักกฎหมายสิทธิมนุษยชน",
           img: require("~/assets/images/label_company/logo_legal_associate.png"),
           desc: "การรวมตัวของกลุ่มนักกฎหมายและ ทนายความ ที่ช่วยเหลือประชาชนให้เข้าถึง ความยุติธรรมตามนิติรัฐ นิติธรรมอย่างที่ควร จะเป็น เพื่อให้รัฐหยุดการคุกคามประชาชน ในนามของกฎหมาย",
-          hasQrcode: false,
+          hasQrcode: true,
           img_qrcode: "",
           web: [
             {
@@ -475,11 +499,23 @@ export default {
     test(color) {
       this.notecolor = color;
     },
-    textareaLengthCheck() {
+    onInput(e) {
+      this.encourage_text = e.target.innerText;
+    },
+    textareaLengthCheck(event) {
       var textarea = document.getElementById("text-area");
-      var textArea = textarea.value.length;
+      var textArea = this.encourage_text.length;
       var charactersLeft = 120 - textArea;
-      this.charactersLeft = charactersLeft;
+      if (charactersLeft > 0) this.charactersLeft = charactersLeft;
+      else this.charactersLeft = 0;
+
+      var max = 120;
+
+      if (event.which != 8 && textArea >= max) {
+        textarea.innerText = textarea.innerText.substring(0, max);
+        this.encourage_text = textarea.innerText.substring(0, max);
+        event.preventDefault();
+      }
     },
     async downloadImageAndSendMsg() {
       if (this.encourage_text != "") {
@@ -514,7 +550,7 @@ export default {
       if (this.encourage_text != "") {
         if (process.client)
           document.getElementById("text-area").classList.add("italic_notetext");
-        this.notetype = 2;
+          this.notetype = 2;
         this.$refs["note-modal"].show();
 
         this.downloadImg();
@@ -527,16 +563,18 @@ export default {
       this.isShow = false;
       setTimeout(() => {
         if (process.client) {
-          html2canvas(document.querySelector("#paper")).then((canvas) => {
-            var a = document.createElement("a");
-            // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
-            a.href = canvas
-              .toDataURL("image/jpeg")
-              .replace("image/jpeg", "image/octet-stream");
-            a.download =
-              this.uuid + "_" + this.$moment().format("DDMMYYYY") + ".jpg";
-            a.click();
-          });
+          html2canvas(document.querySelector("#paper"), { scale: 1 }).then(
+            (canvas) => {
+              var a = document.createElement("a");
+              // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+              a.href = canvas
+                .toDataURL("image/jpeg")
+                .replace("image/jpeg", "image/octet-stream");
+              a.download =
+                this.uuid + "_" + this.$moment().format("DDMMYYYY") + ".jpg";
+              a.click();
+            }
+          );
         }
       }, 1000);
 
@@ -623,7 +661,7 @@ export default {
   height: 100%;
   .box {
     border: 1px solid #000000;
-    padding: 20px 30px;
+    padding: 30px;
     border-radius: 15px;
     margin: 0 10px;
     height: 95%;

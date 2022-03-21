@@ -150,7 +150,8 @@
         </h2>
       </div>
     </div>
-    <Scrollama @step-enter="handler">
+    <Scrollama @step-enter="handler"           :offset="0.9">
+      <div class="h-100vh">1</div>
       <div class="h-100vh">1</div>
       <div class="h-100vh">1</div>
     </Scrollama>
@@ -161,7 +162,9 @@
       hide-header
       no-fade
       centered
+       @hide="onHandleCloseModal()"
     >
+    <div class="wrap-modal-slider" id="wrap-modal-slider">
       <VueSlickCarousel
         v-bind="slickOptions"
         ref="newspaper"
@@ -237,6 +240,7 @@
           <img :src="button_right_newspaper" alt="button_right_default" />
         </template>
       </VueSlickCarousel>
+      </div>
     </b-modal>
   </div>
 </template>
@@ -284,11 +288,18 @@ export default {
       this.$nextTick(() => {
         this.$refs.newspaper.goTo(slide);
       });
+      setTimeout(() => {
+        
+        document.getElementById("wrap-modal-slider").classList.add('open');
+      }, 500);
     },
     handler({ element, index, direction }) {
-      if (index == 1) this.isFade = true;
+      if (index >= 1) this.isFade = true;
       else this.isFade = false;
     },
+    onHandleCloseModal() {
+      document.getElementById("wrap-modal-slider").classList.remove('open');
+    }
   },
 };
 </script>
@@ -461,5 +472,14 @@ img {
 
 .newspaper:hover {
   opacity: 0.5;
+}
+
+.wrap-modal-slider {
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.wrap-modal-slider.open {
+  opacity: 1;
 }
 </style>

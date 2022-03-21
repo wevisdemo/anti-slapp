@@ -10,7 +10,7 @@
     </WvNavbar>
     <IntroSection />
     <PeopleDataSection />
-    <QuoteSection />
+    <QuoteSection /> 
     <NewspaperSection /> 
     <CompanyListSection />
     <Conclusion />
