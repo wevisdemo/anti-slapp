@@ -48,7 +48,7 @@ export default {
   //   dir: 'dist/booksonshelf',
   // },
   router: {
-    base: '/slapp/',
+    base: '/anti-slapp/',
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
