@@ -295,3 +295,15 @@ sup {
 .company-data-link:hover {
   color: #e8da04;
 }
+
+.wv-h2 {
+  @media #{$mq-mini-mobile} {
+    font-size: 36px;
+  }
+}
+
+.wv-h1 {
+  @media #{$mq-mini-mobile} {
+    font-size: 40px;
+  }
+}

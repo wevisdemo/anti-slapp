@@ -81,58 +81,58 @@
                 </h3>
 
                 <div class="people flex-wrap d-flex">
-                  <img
+                  <img loading="lazy" 
                     :class="{ blink_me: i >= blink_case_1 }"
                     :src="people_1"
                     v-for="(item, i) in data_list[0].count"
                     alt=""
                     :key="'case_1_' + i"
                   />
-                  <img
+                  <img loading="lazy" 
                     :src="people_2"
                     v-for="(item, i) in data_list[1].count"
                     alt=""
                     :key="'case_2_' + i"
                   />
-                  <img
+                  <img loading="lazy" 
                     :src="people_3"
                     v-for="(item, i) in data_list[2].count"
                     alt=""
                     :key="'case_3_' + i"
                   />
-                  <img
+                  <img loading="lazy" 
                     :src="people_4"
                     v-for="(item, i) in data_list[3].count"
                     alt=""
                     :key="'case_4_' + i"
                   />
-                  <img
+                  <img loading="lazy" 
                     :src="people_5"
                     :class="{ blink_me: i >= blink_case_5 }"
                     v-for="(item, i) in data_list[4].count"
                     alt=""
                     :key="'case_5_' + i"
                   />
-                  <img
+                  <img loading="lazy" 
                     :src="people_6"
                     v-for="(item, i) in data_list[5].count"
                     alt=""
                     :key="'case_6_' + i"
                   />
-                  <img
+                  <img loading="lazy" 
                     :class="{ blink_me: i >= blink_case_7 }"
                     :src="people_7"
                     v-for="(item, i) in data_list[6].count"
                     alt=""
                     :key="'case_7_' + i"
                   />
-                  <img
+                  <img loading="lazy" 
                     :src="people_8"
                     v-for="(item, i) in data_list[7].count"
                     alt=""
                     :key="'case_8_' + i"
                   />
-                  <img
+                  <img loading="lazy" 
                     :src="people_9"
                     v-for="(item, i) in data_list[8].count"
                     alt=""

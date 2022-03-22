@@ -230,12 +230,12 @@
           เมื่อกด “ส่งข้อความ” ข้อความจะถูกส่งไปจัดเก็บไว้กับทางทีมงาน WeVis<br />เพื่อนำไปใช้เป็นส่วนหนึ่งของการให้กำลังใจและเรียกร้องความยุติธรรมแก่ประชาชนผู้ถูกยุติธรรมทำลายทุกคนต่อไป
         </p>
 
-        <h2 class="wv-font-kondolar text-center wv-h5 my-5">
+        <h2 class="wv-font-kondolar text-center wv-h5 mt-5">
           ร่วมส่งเสียงเพื่อพวกเขา ผ่านการแชร์งานนี้<br />
           พร้อมติดแฮ็ชแท็ค
         </h2>
 
-        <h1 class="wv-font-kondolar text-center wv-h1 wv-font-black">
+        <h1 class="wv-font-kondolar text-center wv-h1 wv-font-black my-3">
           #ยุติธรรมทำลาย
         </h1>
 
