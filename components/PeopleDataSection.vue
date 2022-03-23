@@ -81,74 +81,7 @@
                   >
                 </h3>
 
-                <div class="people flex-wrap d-flex" id="people">
-                  <img
-                    loading="lazy"
-                    :class="{ blink_me: i >= blink_case_1 }"
-                    :src="people_1"
-                    v-for="(item, i) in data_list[0].count"
-                    alt=""
-                    :key="'case_1_' + i"
-                  />
-                  <img
-                    loading="lazy"
-                    :src="people_2"
-                    v-for="(item, i) in data_list[1].count"
-                    alt=""
-                    :key="'case_2_' + i"
-                  />
-                  <img
-                    loading="lazy"
-                    :src="people_3"
-                    v-for="(item, i) in data_list[2].count"
-                    alt=""
-                    :key="'case_3_' + i"
-                  />
-                  <img
-                    loading="lazy"
-                    :src="people_4"
-                    v-for="(item, i) in data_list[3].count"
-                    alt=""
-                    :key="'case_4_' + i"
-                  />
-                  <img
-                    loading="lazy"
-                    :src="people_5"
-                    :class="{ blink_me: i >= blink_case_5 }"
-                    v-for="(item, i) in data_list[4].count"
-                    alt=""
-                    :key="'case_5_' + i"
-                  />
-                  <img
-                    loading="lazy"
-                    :src="people_6"
-                    v-for="(item, i) in data_list[5].count"
-                    alt=""
-                    :key="'case_6_' + i"
-                  />
-                  <img
-                    loading="lazy"
-                    :class="{ blink_me: i >= blink_case_7 }"
-                    :src="people_7"
-                    v-for="(item, i) in data_list[6].count"
-                    alt=""
-                    :key="'case_7_' + i"
-                  />
-                  <img
-                    loading="lazy"
-                    :src="people_8"
-                    v-for="(item, i) in data_list[7].count"
-                    alt=""
-                    :key="'case_8_' + i"
-                  />
-                  <img
-                    loading="lazy"
-                    :src="people_9"
-                    v-for="(item, i) in data_list[8].count"
-                    alt=""
-                    :key="'case_9_' + i"
-                  />
-                </div>
+                <PeopleList :step="index" />
               </div>
             </b-col>
           </b-row>
@@ -513,14 +446,13 @@ export default {
         document.getElementById("timeline-content").clientWidth + h;
     },
     handler({ element, index, direction }) {
-    
-        if (index > 1) {
-          document.getElementById("people").style.opacity = 0;
-          document
-            .getElementById("date-highlight")
-            .classList.add("date-highlight");
-        }
-      
+      if (index > 1) {
+        //document.getElementById("people").style.opacity = 0;
+        document
+          .getElementById("date-highlight")
+          .classList.add("date-highlight");
+      }
+
       //console.log(index);
 
       if (direction == "down") {
@@ -548,49 +480,49 @@ export default {
 
         this.total = data[0].total;
 
-        if (index == 1) {
-          this.blink_case_1 = 0;
-          this.blink_case_5 = this.data_list[4].count;
-          this.blink_case_7 = this.data_list[6].count;
-        } else if (index == 2) {
-          this.blink_case_1 = 55;
-          this.blink_case_5 = this.data_list[4].count;
-          this.blink_case_7 = this.data_list[6].count;
-        } else if (index == 3) {
-          this.blink_case_1 = this.data_list[0].count;
-          this.blink_case_5 = 301;
-          this.blink_case_7 = this.data_list[6].count;
-        } else if (index == 4) {
-          this.blink_case_1 = this.data_list[0].count;
-          this.blink_case_5 = this.data_list[4].count;
-          this.blink_case_7 = this.data_list[6].count;
-        } else if (index == 5) {
-          this.blink_case_1 = this.data_list[0].count;
-          this.blink_case_5 = this.data_list[4].count;
-          this.blink_case_7 = 0;
-        } else if (index == 6 || index == 7 || index == 8 || index == 10) {
-          this.blink_case_1 = this.data_list[0].count;
-          //this.blink_case_5 = this.data_list[4].count;
+        // if (index == 1) {
+        //   this.blink_case_1 = 0;
+        //   this.blink_case_5 = this.data_list[4].count;
+        //   this.blink_case_7 = this.data_list[6].count;
+        // } else if (index == 2) {
+        //   this.blink_case_1 = 55;
+        //   this.blink_case_5 = this.data_list[4].count;
+        //   this.blink_case_7 = this.data_list[6].count;
+        // } else if (index == 3) {
+        //   this.blink_case_1 = this.data_list[0].count;
+        //   this.blink_case_5 = 301;
+        //   this.blink_case_7 = this.data_list[6].count;
+        // } else if (index == 4) {
+        //   this.blink_case_1 = this.data_list[0].count;
+        //   this.blink_case_5 = this.data_list[4].count;
+        //   this.blink_case_7 = this.data_list[6].count;
+        // } else if (index == 5) {
+        //   this.blink_case_1 = this.data_list[0].count;
+        //   this.blink_case_5 = this.data_list[4].count;
+        //   this.blink_case_7 = 0;
+        // } else if (index == 6 || index == 7 || index == 8 || index == 10) {
+        //   this.blink_case_1 = this.data_list[0].count;
+        //   //this.blink_case_5 = this.data_list[4].count;
 
-          //setTimeout(() => {
-          this.blink_case_5 = 0;
-          //}, 200);
-          this.blink_case_7 = this.data_list[6].count;
-        } else if (index == 9) {
-          this.blink_case_1 = 124;
-          this.blink_case_5 = this.data_list[4].count;
-          this.blink_case_7 = this.data_list[6].count;
-        } else {
-          this.blink_case_1 = this.data_list[0].count;
-          this.blink_case_5 = this.data_list[4].count;
-          this.blink_case_7 = this.data_list[6].count;
-        }
+        //   //setTimeout(() => {
+        //   this.blink_case_5 = 0;
+        //   //}, 200);
+        //   this.blink_case_7 = this.data_list[6].count;
+        // } else if (index == 9) {
+        //   this.blink_case_1 = 124;
+        //   this.blink_case_5 = this.data_list[4].count;
+        //   this.blink_case_7 = this.data_list[6].count;
+        // } else {
+        //   this.blink_case_1 = this.data_list[0].count;
+        //   this.blink_case_5 = this.data_list[4].count;
+        //   this.blink_case_7 = this.data_list[6].count;
+        // }
       } else {
         this.total = 291;
       }
 
       setTimeout(() => {
-        document.getElementById("people").style.opacity = 1;
+        //document.getElementById("people").style.opacity = 1;
         document
           .getElementById("date-highlight")
           .classList.remove("date-highlight");
@@ -732,7 +664,7 @@ br {
 }
 
 .timeline-date {
-  transition: all 0.3s;
+  transition: all 0.1s;
   z-index: 2;
   position: relative;
 }
@@ -755,12 +687,12 @@ br {
 }
 
 .pp-hide {
-  opacity: 0;
+  //opacity: 0;
 }
 
 .people {
-  transition: all 0.3s;
-  opacity: 1;
+  //transition: all 0.3s;
+  //opacity: 1;
 }
 img {
   width: 15px;

@@ -298,12 +298,12 @@ sup {
 
 .wv-h2 {
   @media #{$mq-mini-mobile} {
-    font-size: 36px;
+    font-size: 36px !important;
   }
 }
 
 .wv-h1 {
   @media #{$mq-mini-mobile} {
-    font-size: 40px;
+    font-size: 40px !important;
   }
 }
