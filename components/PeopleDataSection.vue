@@ -29,6 +29,7 @@
           </b-row>
         </div>
       </div>
+
       <div class="main__graphic">
         <div class="h-100vh bg-black py-3">
           <div
@@ -64,7 +65,7 @@
               ><div class="bg-black timeline-date">
                 <h3 class="wv-font-black mb-4 wv-h6">18 ก.ค. 63</h3>
               </div>
-              <div class="bg-black timeline-date">
+              <div class="bg-black timeline-date" id="date-highlight">
                 <h3 class="wv-font-black wv-h6">{{ month }}</h3>
               </div>
               <div class="dash-line"></div
@@ -80,59 +81,68 @@
                   >
                 </h3>
 
-                <div class="people flex-wrap d-flex">
-                  <img loading="lazy" 
+                <div class="people flex-wrap d-flex" id="people">
+                  <img
+                    loading="lazy"
                     :class="{ blink_me: i >= blink_case_1 }"
                     :src="people_1"
                     v-for="(item, i) in data_list[0].count"
                     alt=""
                     :key="'case_1_' + i"
                   />
-                  <img loading="lazy" 
+                  <img
+                    loading="lazy"
                     :src="people_2"
                     v-for="(item, i) in data_list[1].count"
                     alt=""
                     :key="'case_2_' + i"
                   />
-                  <img loading="lazy" 
+                  <img
+                    loading="lazy"
                     :src="people_3"
                     v-for="(item, i) in data_list[2].count"
                     alt=""
                     :key="'case_3_' + i"
                   />
-                  <img loading="lazy" 
+                  <img
+                    loading="lazy"
                     :src="people_4"
                     v-for="(item, i) in data_list[3].count"
                     alt=""
                     :key="'case_4_' + i"
                   />
-                  <img loading="lazy" 
+                  <img
+                    loading="lazy"
                     :src="people_5"
                     :class="{ blink_me: i >= blink_case_5 }"
                     v-for="(item, i) in data_list[4].count"
                     alt=""
                     :key="'case_5_' + i"
                   />
-                  <img loading="lazy" 
+                  <img
+                    loading="lazy"
                     :src="people_6"
                     v-for="(item, i) in data_list[5].count"
                     alt=""
                     :key="'case_6_' + i"
                   />
-                  <img loading="lazy" 
+                  <img
+                    loading="lazy"
                     :class="{ blink_me: i >= blink_case_7 }"
                     :src="people_7"
                     v-for="(item, i) in data_list[6].count"
                     alt=""
                     :key="'case_7_' + i"
                   />
-                  <img loading="lazy" 
+                  <img
+                    loading="lazy"
                     :src="people_8"
                     v-for="(item, i) in data_list[7].count"
                     alt=""
                     :key="'case_8_' + i"
                   />
-                  <img loading="lazy" 
+                  <img
+                    loading="lazy"
                     :src="people_9"
                     v-for="(item, i) in data_list[8].count"
                     alt=""
@@ -503,6 +513,16 @@ export default {
         document.getElementById("timeline-content").clientWidth + h;
     },
     handler({ element, index, direction }) {
+    
+        if (index > 1) {
+          document.getElementById("people").style.opacity = 0;
+          document
+            .getElementById("date-highlight")
+            .classList.add("date-highlight");
+        }
+      
+      //console.log(index);
+
       if (direction == "down") {
         if (index == 0) {
           if (!this.isShowTutotial) {
@@ -568,6 +588,13 @@ export default {
       } else {
         this.total = 291;
       }
+
+      setTimeout(() => {
+        document.getElementById("people").style.opacity = 1;
+        document
+          .getElementById("date-highlight")
+          .classList.remove("date-highlight");
+      }, 500);
     },
     handlerExit({ element, direction, index }) {
       if (direction == "up" && index == 0) {
@@ -705,8 +732,14 @@ br {
 }
 
 .timeline-date {
+  transition: all 0.3s;
   z-index: 2;
   position: relative;
+}
+
+.date-highlight {
+  background: white;
+  color: black;
 }
 
 .people-wrapper {
@@ -721,7 +754,15 @@ br {
   }
 }
 
-.people img {
+.pp-hide {
+  opacity: 0;
+}
+
+.people {
+  transition: all 0.3s;
+  opacity: 1;
+}
+img {
   width: 15px;
   padding: 1px;
 

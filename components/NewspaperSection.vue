@@ -32,9 +32,11 @@
         <div class="my-4">
           <img :src="timeline_newspaper" alt="timeline_newspaper" />
         </div>
-        <p class="wv-font-anuphan wv-b3 text-white text-center m-0">
+        <p class="wv-font-anuphan wv-b3 text-white text-center mb-3">
           ยังคงอยู่เสมอมา
         </p>
+
+        <img :src="click" alt="click" />
       </div>
 
       <div class="text-center my-5">
@@ -116,7 +118,6 @@
             />
           </b-col>
         </b-row>
-        <img :src="click" alt="click" />
       </div>
     </div>
     <div class="bg-black h-100vh overflow-hidden circle-scale">
@@ -150,7 +151,7 @@
         </h2>
       </div>
     </div>
-    <Scrollama @step-enter="handler"           :offset="0.9">
+    <Scrollama @step-enter="handler" :offset="0.9">
       <div class="h-100vh">1</div>
       <div class="h-100vh">1</div>
       <div class="h-100vh">1</div>
@@ -162,84 +163,85 @@
       hide-header
       no-fade
       centered
-       @hide="onHandleCloseModal()"
+      @hide="onHandleCloseModal()"
     >
-    <div class="wrap-modal-slider" id="wrap-modal-slider">
-      <VueSlickCarousel
-        v-bind="slickOptions"
-        ref="newspaper"
-        id="newspaper-slick"
-        class="newspaper-slick"
-      >
-        <div
-          class="p-3 text-white bg-black wv-font-anuphan wv-b3 newspaper-text"
+      <div class="wrap-modal-slider" id="wrap-modal-slider">
+        <VueSlickCarousel
+          v-bind="slickOptions"
+          ref="newspaper"
+          id="newspaper-slick"
+          class="newspaper-slick"
         >
-          <p class="yellow mb-1 wv-font-black">
-            ช่วงรัฐบาลจอมพลสฤษดิ์ ธนะรัชต์
-          </p>
-          <p class="m-0">
-            มีการใช้พระราชบัญญัติว่าด้วยการกระทำอันเป็น คอมมิวนิสต์ พ.ศ.2495
-            เป็นเครื่องมือในการจัดการ นักการเมือง อดีตรัฐมนตรี
-            นักหนังสือพิมพ์หรือ นักเขียน ทนายความ ครูอาจารย์ นิสิตนักศึกษา
-            ปัญญาชน รวมทั้งกรรมการสหภาพแรงงาน
-            ทำให้มีผู้ถูกจับด้วยข้อหาดังกล่าวจำนวน 190 คน
-          </p>
-        </div>
-        <div
-          class="p-3 text-white bg-black wv-font-anuphan wv-b3 newspaper-text"
-        >
-          <p class="yellow mb-1 wv-font-black">
-            ช่วงหลังเหตุการณ์ 6 ตุลาคม 2519
-          </p>
-          <p class="m-0">
-            มีการใช้กฎหมายดำเนินคดีกับนักศึกษาและประชาชน จำนวนมาก
-            มีผู้ถูกจับไม่น้อยกว่า 3,094 คน มีผู้ถูกดำเนินคดีทั้งสิ้น 106 คน
-            ภายใต้ข้อหาต่าง ๆ เช่น การกระทำอันเป็นคอมมิวนิสต์ กบฏ มั่วสุมกัน
-            ตั้งแต่สิบคนขึ้นไป มั่วสุมสมคบกันตั้งแต่ห้าคนขึ้นไป เป็นซ่องโจร
-          </p>
-        </div>
-        <div
-          class="p-3 text-white bg-black wv-font-anuphan wv-b3 newspaper-text"
-        >
-          <p class="yellow mb-1 wv-font-black">
-            ช่วงรัฐบาลประยุทธ์ที่มาจากการรัฐประหาร
-          </p>
-          <p class="m-0">
-            มีการใช้ข้อหา “ฝ่าฝืนคำสั่งห้ามมั่วสุ่มหรือชุมนุมทางการเมืองตั้งแต่
-            5 คน ขึ้นไป” ตามประกาศ คสช. ที่ 7/2557 และคำสั่งหัวหน้า คสช. ที่
-            3/2558 ดำเนินคดีกับผู้เคลื่อนไหวแสดงออกทางการเมือง อย่างน้อย 428 คน
-            และใช้ พ.ร.บ.การชุมนุมสาธารณะฯ ดำเนินคดีควบคู่ไปกับคำสั่งหัวหน้า
-            คสช. อย่างน้อย 276 คน<br /><br />
-            มีการใช้ข้อหา “ยุยงปลุกปั่น” ตามประมวลกฎหมายอาญา มาตรา 116
-            ดำเนินคดีกับผู้แสดงความคิดเห็นหรือเผยแพร่ข้อมูลวิพากษ์วิจารณ์ คสช.
-            หรือเป็นผู้นำปราศรัยในการชุมนุมต่าง ๆ อย่างน้อย 124 คน<br /><br />
-            มีการใช้ พ.ร.บ.คอมพิวเตอร์ฯ
-            ดำเนินคดีกับผู้แสดงความคิดเห็นทางการเมืองบนโลกออนไลน์ อย่างน้อย 197
-            คน
-          </p>
-        </div>
-        <div
-          class="p-3 text-white bg-black wv-font-anuphan wv-b3 newspaper-text"
-        >
-          <p class="yellow mb-1 wv-font-black">
-            ช่วงรัฐบาลประยุทธ์ที่มาจากการเลือกตั้ง ด้วยกติกาไม่เป็นธรรม
-          </p>
-          <p class="m-0">
-            มีการใช้ พ.ร.บ.การชุมนุมสาธารณะฯ ดำเนินคดีกับ
-            ประชาชนที่ออกมาชุมนุมทางการเมือง อย่างน้อย 28 คน<br /><br />
+          <div
+            class="p-3 text-white bg-black wv-font-anuphan wv-b3 newspaper-text"
+          >
+            <p class="yellow mb-1 wv-font-black">
+              ช่วงรัฐบาลจอมพลสฤษดิ์ ธนะรัชต์
+            </p>
+            <p class="m-0">
+              มีการใช้พระราชบัญญัติว่าด้วยการกระทำอันเป็น คอมมิวนิสต์ พ.ศ.2495
+              เป็นเครื่องมือในการจัดการ นักการเมือง อดีตรัฐมนตรี
+              นักหนังสือพิมพ์หรือ นักเขียน ทนายความ ครูอาจารย์ นิสิตนักศึกษา
+              ปัญญาชน รวมทั้งกรรมการสหภาพแรงงาน
+              ทำให้มีผู้ถูกจับด้วยข้อหาดังกล่าวจำนวน 190 คน
+            </p>
+          </div>
+          <div
+            class="p-3 text-white bg-black wv-font-anuphan wv-b3 newspaper-text"
+          >
+            <p class="yellow mb-1 wv-font-black">
+              ช่วงหลังเหตุการณ์ 6 ตุลาคม 2519
+            </p>
+            <p class="m-0">
+              มีการใช้กฎหมายดำเนินคดีกับนักศึกษาและประชาชน จำนวนมาก
+              มีผู้ถูกจับไม่น้อยกว่า 3,094 คน มีผู้ถูกดำเนินคดีทั้งสิ้น 106 คน
+              ภายใต้ข้อหาต่าง ๆ เช่น การกระทำอันเป็นคอมมิวนิสต์ กบฏ มั่วสุมกัน
+              ตั้งแต่สิบคนขึ้นไป มั่วสุมสมคบกันตั้งแต่ห้าคนขึ้นไป เป็นซ่องโจร
+            </p>
+          </div>
+          <div
+            class="p-3 text-white bg-black wv-font-anuphan wv-b3 newspaper-text"
+          >
+            <p class="yellow mb-1 wv-font-black">
+              ช่วงรัฐบาลประยุทธ์ที่มาจากการรัฐประหาร
+            </p>
+            <p class="m-0">
+              มีการใช้ข้อหา
+              “ฝ่าฝืนคำสั่งห้ามมั่วสุ่มหรือชุมนุมทางการเมืองตั้งแต่ 5 คน ขึ้นไป”
+              ตามประกาศ คสช. ที่ 7/2557 และคำสั่งหัวหน้า คสช. ที่ 3/2558
+              ดำเนินคดีกับผู้เคลื่อนไหวแสดงออกทางการเมือง อย่างน้อย 428 คน
+              และใช้ พ.ร.บ.การชุมนุมสาธารณะฯ ดำเนินคดีควบคู่ไปกับคำสั่งหัวหน้า
+              คสช. อย่างน้อย 276 คน<br /><br />
+              มีการใช้ข้อหา “ยุยงปลุกปั่น” ตามประมวลกฎหมายอาญา มาตรา 116
+              ดำเนินคดีกับผู้แสดงความคิดเห็นหรือเผยแพร่ข้อมูลวิพากษ์วิจารณ์ คสช.
+              หรือเป็นผู้นำปราศรัยในการชุมนุมต่าง ๆ อย่างน้อย 124 คน<br /><br />
+              มีการใช้ พ.ร.บ.คอมพิวเตอร์ฯ
+              ดำเนินคดีกับผู้แสดงความคิดเห็นทางการเมืองบนโลกออนไลน์ อย่างน้อย
+              197 คน
+            </p>
+          </div>
+          <div
+            class="p-3 text-white bg-black wv-font-anuphan wv-b3 newspaper-text"
+          >
+            <p class="yellow mb-1 wv-font-black">
+              ช่วงรัฐบาลประยุทธ์ที่มาจากการเลือกตั้ง ด้วยกติกาไม่เป็นธรรม
+            </p>
+            <p class="m-0">
+              มีการใช้ พ.ร.บ.การชุมนุมสาธารณะฯ ดำเนินคดีกับ
+              ประชาชนที่ออกมาชุมนุมทางการเมือง อย่างน้อย 28 คน<br /><br />
 
-            มีการใช้ พ.ร.บ.คอมพิวเตอร์ฯ
-            ดำเนินคดีกับผู้แสดงความคิดเห็นทางการเมืองบนโลกออนไลน์ อย่างน้อย 42
-            คน
-          </p>
-        </div>
-        <template #prevArrow="arrowOption">
-          <img :src="button_left_newspaper" alt="button_left_default" />
-        </template>
-        <template #nextArrow="arrowOption">
-          <img :src="button_right_newspaper" alt="button_right_default" />
-        </template>
-      </VueSlickCarousel>
+              มีการใช้ พ.ร.บ.คอมพิวเตอร์ฯ
+              ดำเนินคดีกับผู้แสดงความคิดเห็นทางการเมืองบนโลกออนไลน์ อย่างน้อย 42
+              คน
+            </p>
+          </div>
+          <template #prevArrow="arrowOption">
+            <img :src="button_left_newspaper" alt="button_left_default" />
+          </template>
+          <template #nextArrow="arrowOption">
+            <img :src="button_right_newspaper" alt="button_right_default" />
+          </template>
+        </VueSlickCarousel>
       </div>
     </b-modal>
   </div>
@@ -257,7 +259,7 @@ export default {
       newspaper_2: require("~/assets/images/newspaper/02_newspaper.png"),
       newspaper_3: require("~/assets/images/newspaper/03_newspaper.png"),
       newspaper_4: require("~/assets/images/newspaper/04_newspaper.png"),
-      click: require("~/assets/images/click.svg"),
+      click: require("~/assets/images/click_2.svg"),
       timeline_newspaper: require("~/assets/images/timeline_newspaper.svg"),
       button_left_newspaper: require("~/assets/images/button_left_newspaper.svg"),
       button_right_newspaper: require("~/assets/images/button_right_newspaper.svg"),
@@ -289,8 +291,7 @@ export default {
         this.$refs.newspaper.goTo(slide);
       });
       setTimeout(() => {
-        
-        document.getElementById("wrap-modal-slider").classList.add('open');
+        document.getElementById("wrap-modal-slider").classList.add("open");
       }, 500);
     },
     handler({ element, index, direction }) {
@@ -298,8 +299,8 @@ export default {
       else this.isFade = false;
     },
     onHandleCloseModal() {
-      document.getElementById("wrap-modal-slider").classList.remove('open');
-    }
+      document.getElementById("wrap-modal-slider").classList.remove("open");
+    },
   },
 };
 </script>

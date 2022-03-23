@@ -10,8 +10,8 @@
     </WvNavbar>
     <IntroSection />
     <PeopleDataSection />
-    <QuoteSection /> 
-    <NewspaperSection /> 
+    <QuoteSection />
+    <NewspaperSection />
     <CompanyListSection />
     <Conclusion />
     <WvFooter :dark="true" />

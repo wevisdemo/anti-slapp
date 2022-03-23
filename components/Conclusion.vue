@@ -85,10 +85,21 @@
               </b-col>
             </b-row>
           </div>
-          <div class="d-flex justify-content-center h-auto link-web">
-            <div v-for="(item2, j) in item.web" :key="j" class="mx-1">
+          <div
+            class="d-flex justify-content-center h-auto link-web"
+            :class="{ 'bt-50': item.id == 3 }"
+          >
+            <div
+              v-for="(item2, j) in item.web"
+              :key="j"
+              class="mx-1 text-center text-uppercase"
+            >
+              <template v-if="item.id == 3">
+                <span class="wv-font-anuphan wv-b6" v-if="j == 1">iLaw</span>
+                <span class="wv-font-anuphan wv-b6" v-if="j == 2">iLawFX</span>
+              </template>
               <a :href="item2.link" target="_blank" rel="noopener noreferrer"
-                ><img :src="item2.logo" alt=""
+                ><img :src="item2.logo" alt="" class="mx-auto"
               /></a>
             </div>
           </div>
@@ -428,12 +439,13 @@ export default {
               link: "https://www.facebook.com/iLawClub",
               logo: require("~/assets/images/logo_fb.svg"),
             },
+
             {
-              link: "https://twitter.com/iLawFX?s=20",
+              link: "https://twitter.com/iLawclub?s=20",
               logo: require("~/assets/images/logo_twitter.svg"),
             },
             {
-              link: "https://twitter.com/iLawclub?s=20",
+              link: "https://twitter.com/iLawFX?s=20",
               logo: require("~/assets/images/logo_twitter.svg"),
             },
             {
@@ -550,7 +562,7 @@ export default {
       if (this.encourage_text != "") {
         if (process.client)
           document.getElementById("text-area").classList.add("italic_notetext");
-          this.notetype = 2;
+        this.notetype = 2;
         this.$refs["note-modal"].show();
 
         this.downloadImg();
@@ -769,5 +781,10 @@ hr {
 
 .italic_notetext {
   transform: rotate(-3deg);
+}
+
+.bt-50 {
+  bottom: 50px;
+  align-items: end;
 }
 </style>
