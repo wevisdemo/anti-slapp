@@ -266,7 +266,7 @@
           สนับสนุนข้อมูลหลักโดย
         </p>
         <a
-          href="https://tlhr2014.com/"
+          href="https://database.tlhr2014.com/public/search"
           target="_blank"
           rel="noopener noreferrer"
         >
