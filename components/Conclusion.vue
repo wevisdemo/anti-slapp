@@ -251,7 +251,7 @@
         </h1>
 
         <WvSharer
-          url="https://wevisdemo.github.io/slapp?hashtag=%23AquiVaElHashtag"
+          url="https://wevis.info/anti-slapp/"
           center="true"
         />
 

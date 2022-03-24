@@ -34,12 +34,12 @@ export default {
         {
           hid: "og-image",
           property: "og:image",
-          content: "https://wevisdemo.github.io/anti-slapp/og_image.png",
+          content: "https://wevis.info/anti-slapp/og_image.png",
         },
         {
           hid: "twitter:image",
           name: "twitter:image:src",
-          content: "https://wevisdemo.github.io/anti-slapp/og_image.png",
+          content: "https://wevis.info/anti-slapp/og_image.png",
         },
         {
           hid: "og:title",
