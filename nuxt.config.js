@@ -1,4 +1,4 @@
-const BASE_URL = 'https://thaihealth-lesssodium.netlify.app/'
+const BASE_URL = 'https://wevis.info/anti-slapp/'
 // const array = [];
 // for (var i = 0; i < 51; i++) {
 //   for (var j = 0; j < 51; j++) {
