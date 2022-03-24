@@ -101,11 +101,7 @@ export default {
   },
 
   plausible: {
-    domain: 'lowsaltthai.com/sodiumquiz',
+    domain: 'wevis.info/anti-slapp',
     apiHost: 'https://analytics.punchup.world',
-  },
-
-  generate: {
-    routes: ['ogimage/1', 'ogimage/2', 'ogimage/3', 'ogimage/4', 'ogimage/5']
   }
 }
