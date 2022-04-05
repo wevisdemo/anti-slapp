@@ -381,7 +381,7 @@
         >
       </WvButtonGroup>
 
-      <WvSharer :center="true" url="PROJECT_MAIN_PAGE" />
+      <WvSharer :center="true" url="https://wevis.info/anti-slapp/" />
     </WvContainer>
     <WvFooter :dark="true" />
   </div>
