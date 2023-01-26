@@ -250,10 +250,7 @@
           #ยุติธรรมทำลาย
         </h1>
 
-        <WvSharer
-          url="https://wevis.info/anti-slapp/"
-          center="true"
-        />
+        <WvSharer url="https://wevis.info/anti-slapp/" center="true" />
 
         <hr class="w-50 my-5" />
         <p class="wv-font-kondolar text-center wv-b2 wv-font-black">
