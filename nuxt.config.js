@@ -103,5 +103,8 @@ export default {
   plausible: {
     domain: 'wevis.info/anti-slapp',
     apiHost: 'https://analytics.punchup.world',
+  },
+  env: {
+    NOCO_TOKEN: process.env.NOCO_TOKEN
   }
 }

@@ -327,12 +327,12 @@ import html2canvas from "html2canvas";
 import { uuid } from "vue-uuid";
 
 const encourage_slapp =
-  "https://spreadsheet.punchup.world/nc/slapp_am8d/api/v1/encourage-slapp";
+  "https://sheets.wevis.info/api/v1/db/data/v1/Slapp/Encourage-Slapp";
 
 let config = {
   headers: {
-    "xc-auth":
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBpbXBhdGlwYW5AcHVuY2h1cC53b3JsZCIsImZpcnN0bmFtZSI6bnVsbCwibGFzdG5hbWUiOm51bGwsImlkIjoyLCJyb2xlcyI6InVzZXIiLCJpYXQiOjE2NDQ0NzI1ODl9.jwq4PH2VA3mjhfXR0hzaJRz4h7x02s4ZOcEZB9UGMh8",
+    "xc-token":
+      process.env.NOCO_TOKEN,
     "Content-Type": "application/json",
   },
 };
