@@ -331,10 +331,9 @@ const encourage_slapp =
 
 let config = {
   headers: {
-    "xc-token":
-      process.env.NOCO_TOKEN,
-    "Content-Type": "application/json",
-  },
+    "xc-token": "iAnu3nbc3kzyTqriMr2UD_vWdN80Dh12ziUp1Vw2",
+    "Content-Type": "application/json"
+  }
 };
 
 export default {
@@ -342,7 +341,7 @@ export default {
     WvButton,
     WvButtonGroup,
     WvSharer,
-    html2canvas,
+    html2canvas
   },
   data() {
     return {
@@ -378,130 +377,136 @@ export default {
             breakpoint: 600,
             settings: {
               slidesToShow: 1,
-              slidesToScroll: 1,
-            },
-          },
-        ],
+              slidesToScroll: 1
+            }
+          }
+        ]
       },
       company_list: [
         {
           id: 1,
           name: "ศูนย์ทนายความเพื่อสิทธิมนุษยชน (TLHR)",
           img: require("~/assets/images/label_company/logo_tlhr.png"),
-          desc: "การรวมตัวของกลุ่มทนายความ นักกฎหมาย สิทธิมนุษยชน หลังการรัฐประหารของ คสช. มีวัตถุประสงค์เพื่อบันทึกข้อมูลการละเมิด สิทธิมนุษยชนในประเทศไทยภายหลังการ รัฐประหาร ดำเนินการให้ความช่วยเหลือ ทางกฎหมายแก่ผู้ได้รับผลกระทบ",
+          desc:
+            "การรวมตัวของกลุ่มทนายความ นักกฎหมาย สิทธิมนุษยชน หลังการรัฐประหารของ คสช. มีวัตถุประสงค์เพื่อบันทึกข้อมูลการละเมิด สิทธิมนุษยชนในประเทศไทยภายหลังการ รัฐประหาร ดำเนินการให้ความช่วยเหลือ ทางกฎหมายแก่ผู้ได้รับผลกระทบ",
           hasQrcode: true,
           img_qrcode: "",
           web: [
             {
               link: "https://www.facebook.com/lawyercenter2014",
-              logo: require("~/assets/images/logo_fb.svg"),
+              logo: require("~/assets/images/logo_fb.svg")
             },
             {
               link: "https://twitter.com/TLHR2014?s=20",
-              logo: require("~/assets/images/logo_twitter.svg"),
+              logo: require("~/assets/images/logo_twitter.svg")
             },
             {
               link: "https://tlhr2014.com/ ",
-              logo: require("~/assets/images/logo_web.svg"),
-            },
-          ],
+              logo: require("~/assets/images/logo_web.svg")
+            }
+          ]
         },
         {
           id: 2,
           name: "สมาคมนักกฎหมายสิทธิมนุษยชน (สนส.)",
           img: require("~/assets/images/label_company/logo_hrla.png"),
-          desc: "การรวมตัวกันของกลุ่มนักกฎหมาย ทนายความและคนทำงานด้านสิทธิมนุษยชน ที่มีความมุ่งมั่นในการปฏิบัติงาน เพื่อส่งเสริม หลักนิติธรรม ความเป็นธรรมในสังคม และ คุ้มครองสิทธิมนุษยชน ทั้งในทางวิชาการ และการใช้มาตรฐานทางกฎหมาย",
+          desc:
+            "การรวมตัวกันของกลุ่มนักกฎหมาย ทนายความและคนทำงานด้านสิทธิมนุษยชน ที่มีความมุ่งมั่นในการปฏิบัติงาน เพื่อส่งเสริม หลักนิติธรรม ความเป็นธรรมในสังคม และ คุ้มครองสิทธิมนุษยชน ทั้งในทางวิชาการ และการใช้มาตรฐานทางกฎหมาย",
           hasQrcode: false,
           img_qrcode: "",
           web: [
             {
               link: "https://www.facebook.com/naksit.org/",
-              logo: require("~/assets/images/logo_fb.svg"),
+              logo: require("~/assets/images/logo_fb.svg")
             },
             {
               link: "https://naksit.net/",
-              logo: require("~/assets/images/logo_web.svg"),
-            },
-          ],
+              logo: require("~/assets/images/logo_web.svg")
+            }
+          ]
         },
         {
           id: 3,
           name: "โครงการอินเทอร์เน็ตเพื่อกฎหมาย ประชาชน (iLaw)",
           img: require("~/assets/images/label_company/logo_ilaw.png"),
-          desc: "องค์กรซึ่งทำงานกับภาคประชาสังคมและ คนทั่วไปในสังคมมีเป้าหมายเพื่อไปให้ถึง หลักการประชาธิปไตยเสรีภาพในการ แสดงออกและระบบยุติธรรมที่เป็นธรรม และตรวจสอบได้กว่าที่เป็นอยู่ในปัจจุบัน",
+          desc:
+            "องค์กรซึ่งทำงานกับภาคประชาสังคมและ คนทั่วไปในสังคมมีเป้าหมายเพื่อไปให้ถึง หลักการประชาธิปไตยเสรีภาพในการ แสดงออกและระบบยุติธรรมที่เป็นธรรม และตรวจสอบได้กว่าที่เป็นอยู่ในปัจจุบัน",
           hasQrcode: false,
           img_qrcode: "",
           web: [
             {
               link: "https://www.facebook.com/iLawClub",
-              logo: require("~/assets/images/logo_fb.svg"),
+              logo: require("~/assets/images/logo_fb.svg")
             },
 
             {
               link: "https://twitter.com/iLawclub?s=20",
-              logo: require("~/assets/images/logo_twitter.svg"),
+              logo: require("~/assets/images/logo_twitter.svg")
             },
             {
               link: "https://twitter.com/iLawFX?s=20",
-              logo: require("~/assets/images/logo_twitter.svg"),
+              logo: require("~/assets/images/logo_twitter.svg")
             },
             {
               link: "https://www.ilaw.or.th/",
-              logo: require("~/assets/images/logo_web.svg"),
-            },
-          ],
+              logo: require("~/assets/images/logo_web.svg")
+            }
+          ]
         },
         {
           id: 4,
           name: "ภาคีนักกฎหมายสิทธิมนุษยชน",
           img: require("~/assets/images/label_company/logo_legal_associate.png"),
-          desc: "การรวมตัวของกลุ่มนักกฎหมายและ ทนายความ ที่ช่วยเหลือประชาชนให้เข้าถึง ความยุติธรรมตามนิติรัฐ นิติธรรมอย่างที่ควร จะเป็น เพื่อให้รัฐหยุดการคุกคามประชาชน ในนามของกฎหมาย",
+          desc:
+            "การรวมตัวของกลุ่มนักกฎหมายและ ทนายความ ที่ช่วยเหลือประชาชนให้เข้าถึง ความยุติธรรมตามนิติรัฐ นิติธรรมอย่างที่ควร จะเป็น เพื่อให้รัฐหยุดการคุกคามประชาชน ในนามของกฎหมาย",
           hasQrcode: true,
           img_qrcode: "",
           web: [
             {
               link: "https://www.facebook.com/HRLawyersAlliance/",
-              logo: require("~/assets/images/logo_fb.svg"),
+              logo: require("~/assets/images/logo_fb.svg")
             },
             {
               link: "https://twitter.com/HRLawyersTH?s=20",
-              logo: require("~/assets/images/logo_twitter.svg"),
-            },
-          ],
+              logo: require("~/assets/images/logo_twitter.svg")
+            }
+          ]
         },
         {
           id: 5,
           name: "กองทุนราษฎรประสงค์",
           img: require("~/assets/images/label_company/fund.png"),
-          desc: "กองทุนเพื่อเงินวางประกันตัวและเงินค่าปรับ ในคดีที่เกี่ยวเนื่องกับการใช้สิทธิเสรีภาพ ในการแสดงออกทางการเมือง",
+          desc:
+            "กองทุนเพื่อเงินวางประกันตัวและเงินค่าปรับ ในคดีที่เกี่ยวเนื่องกับการใช้สิทธิเสรีภาพ ในการแสดงออกทางการเมือง",
           hasQrcode: true,
           img_qrcode: require("~/assets/images/willofthepeoplefund-qr.jpg"),
           web: [
             {
               link: "https://www.facebook.com/willofthepeoplefund/",
-              logo: require("~/assets/images/logo_fb.svg"),
-            },
-          ],
+              logo: require("~/assets/images/logo_fb.svg")
+            }
+          ]
         },
         {
           id: 6,
           name: "กองทุนดาตอร์ปิโด",
           img: require("~/assets/images/label_company/fund_2.png"),
-          desc: "กองทุนเพื่อเพื่อช่วยเหลือผู้ถูกจับกุม ที่เกี่ยวข้องกับการชุมนุม หรือคดี ทางการเมืองอื่น ๆ",
+          desc:
+            "กองทุนเพื่อเพื่อช่วยเหลือผู้ถูกจับกุม ที่เกี่ยวข้องกับการชุมนุม หรือคดี ทางการเมืองอื่น ๆ",
           hasQrcode: true,
           img_qrcode: require("~/assets/images/FOTOofSilence-qr.jpg"),
           web: [
             {
               link: "https://www.facebook.com/FOTOofSilence/",
-              logo: require("~/assets/images/logo_fb.svg"),
+              logo: require("~/assets/images/logo_fb.svg")
             },
             {
               link: "https://twitter.com/FOTOofSilence?s=20",
-              logo: require("~/assets/images/logo_twitter.svg"),
-            },
-          ],
-        },
-      ],
+              logo: require("~/assets/images/logo_twitter.svg")
+            }
+          ]
+        }
+      ]
     };
   },
   methods: {
@@ -537,15 +542,15 @@ export default {
             encourage_slapp,
             {
               text: this.encourage_text,
-              date: this.$moment().format("DD/MM/YYYY HH:mm"),
+              date: this.$moment().format("DD/MM/YYYY HH:mm")
             },
             config
           )
-          .then((response) => {
+          .then(response => {
             console.log("send !");
             this.downloadImg();
           })
-          .catch((error) => {
+          .catch(error => {
             console.log(error);
           });
 
@@ -573,7 +578,7 @@ export default {
       setTimeout(() => {
         if (process.client) {
           html2canvas(document.querySelector("#paper"), { scale: 1 }).then(
-            (canvas) => {
+            canvas => {
               var a = document.createElement("a");
               // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
               a.href = canvas
@@ -595,8 +600,8 @@ export default {
             .getElementById("text-area")
             .classList.remove("italic_notetext");
       }, 2000);
-    },
-  },
+    }
+  }
 };
 </script>
 

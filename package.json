@@ -24,16 +24,13 @@
     "html2canvas": "^1.4.1",
     "intersection-observer": "^0.12.0",
     "moment": "^2.29.1",
-    "node-sass": "^6.0.1",
     "nuxt": "^2.15.7",
     "sass-loader": "^10.2.0",
     "scrollama": "^2.2.2",
     "smoothscroll-polyfill": "^0.4.4",
-    "swiper": "^5.4.5",
     "v-animate-css": "0.0.5",
     "v-autocomplete": "^1.8.2",
     "vue-aos": "^2.3.0",
-    "vue-awesome-swiper": "^4.1.1",
     "vue-dragscroll": "^3.0.1",
     "vue-lottie": "^0.2.1",
     "vue-photo-zoom-pro": "^2.5.0",
@@ -45,5 +42,7 @@
     "vue-use-sound": "^1.1.1",
     "vue-uuid": "^2.0.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "sass": "^1.66.1"
+  }
 }

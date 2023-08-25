@@ -64,7 +64,6 @@ export default {
   plugins: [
     { src: './plugins/vue-slick-carousel.js' },
     { src: './plugins/vue-dragscroll.js', mode: 'client' },
-    { src: '~/plugins/vue-awesome-swiper', mode: 'client' },
     { src: '~/plugins/index.js', mode: 'client' }
   ],
 
